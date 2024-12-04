@@ -11,7 +11,7 @@ export default function TopBar() {
 
     const handleLogOut = () => {
         localStorage.removeItem('isAuth')
-        navigate('/')
+        navigate('')
     }
     return (
         <NotificationBar>

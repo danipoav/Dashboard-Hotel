@@ -4,6 +4,9 @@ import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import Room from './components/Dashboard/Room/Room';
 import { DashboardContent } from './components/Dashboard/DashboardContent';
+import Users from './components/Dashboard/Users/Users';
+import UsersCreate from './components/Dashboard/Users/UsersCreate';
+
 function App() {
 
   const [isAuth, setIsAuth] = useState(false)
@@ -33,7 +36,11 @@ function App() {
           />}
           <Route path="/home" element={isAuth ? <Dashboard /> : <Navigate to="/" />}>
             <Route index element={<DashboardContent />}></Route>
-            <Route path="room" element={<Room />} />
+            <Route path="room" element={<Room />}>
+            </Route>
+            <Route path='users' element={<Users />}>
+              <Route path='create' element={<UsersCreate />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter >
