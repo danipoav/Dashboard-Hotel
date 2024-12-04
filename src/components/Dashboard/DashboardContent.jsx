@@ -13,7 +13,7 @@ export const DashboardContent = () => {
                         <Text>I have been there many times.Rooms ,Food and Service are excellent.we did lots of Excursions and all the places are from the Hotel reachable. we visited Long Waterfall and was very helpful and excellent</Text>
                         <ContainerPerson>
                             <Div>
-                                <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="Random" />
+                                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Random" />
                                 <ContainerName>
                                     <Name>Kusnaidi Anderson</Name>
                                     <Time>4m ago</Time>
@@ -45,7 +45,7 @@ export const DashboardContent = () => {
                         <Text>I have been there many times.Rooms ,Food and Service are excellent.we did lots of Excursions and all the places are from the Hotel reachable. we visited Long Waterfall and was very helpful and excellent</Text>
                         <ContainerPerson>
                             <Div>
-                                <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="Random" />
+                                <img src="https://randomuser.me/api/portraits/men/17.jpg" alt="Random" />
                                 <ContainerName>
                                     <Name>Kusnaidi Anderson</Name>
                                     <Time>4m ago</Time>
