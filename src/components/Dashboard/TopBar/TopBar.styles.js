@@ -14,7 +14,7 @@ export const NotificationBar = styled.div`
   z-index: 1000; 
   padding: 1em 5em;
   padding-left: 2em;
-  background-color: #00000005;
+  background-color: white;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 
   svg{

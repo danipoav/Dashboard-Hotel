@@ -22,13 +22,13 @@ export const Card = styled.div`
     align-items: center;
     padding: 20px;
     border-bottom: 1px solid lightgray;
+    justify-content: space-between;
 `
 
 export const CardGuest = styled.div`
     display: flex;
     gap: 10px;
     align-items: center;
-
     img{
         width: 4%;
         border-radius: 10px;
@@ -41,6 +41,7 @@ export const ContainerName = styled.div`
     flex-direction: column;
     justify-content: center;
     margin-right: 2.5em;
+    width: 150px;
 `
 
 export const Name = styled.h3`
@@ -67,6 +68,7 @@ export const Check = styled.button`
 export const Text = styled.p`
     color: #393939;
     margin-right: 2.5em;
+    width: 150px;
 
 `
 
