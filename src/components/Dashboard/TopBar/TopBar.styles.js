@@ -32,11 +32,6 @@ export const LeftSection = styled.div`
   }
 `;
 
-export const CenterSection = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 20%; 
-`;
 
 export const RightSection = styled.div`
   display: flex;
@@ -48,28 +43,6 @@ export const RightSection = styled.div`
   }
 `;
 
-export const SearchBar = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: #FCFCFC;
-  padding: 10px 10px;
-  border-radius: 30px;
-  width: 100%;
-  
-  input {
-    background: transparent;
-    border: none;
-    outline: none;
-    margin-left: 10px;
-    width: 100%;
-    font-size: 14px;
-  }
-
-  svg {
-    cursor: pointer;
-    color: #6E6E6E;
-  }
-`;
 
 export const TitleTop = styled.h1`
   font-size: 1.5em;

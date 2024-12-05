@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Content, Card, CardGuest, ContainerName, Name, ID, Text, ButtonStatus, Price, ButtonCreate, Ul, Li } from './Room.styles'
+import { Container, Content, CardGuest, ContainerName, Name, ID, ButtonStatus, Price, ButtonCreate, Tr, Td, Th } from './Room.styles'
 import { MdDeleteOutline } from "react-icons/md";
 import { room } from '../../../data/room';
 import { MdAddCircleOutline } from "react-icons/md";
@@ -17,34 +17,47 @@ export default function Room() {
     <>
       <Container>
         <ButtonCreate>
-          New Room<MdAddCircleOutline size={20} />
+          New Room <MdAddCircleOutline size={20} />
         </ButtonCreate>
         <Content>
-          <Ul>
-            <Li style={{ width: '26%' }}>Room Name</Li>
-            <Li style={{ width: '13%' }}>Bed Type</Li>
-            <Li style={{ width: '16%' }}>Room Floor</Li>
-            <Li style={{ width: '16%' }}>Facilities</Li>
-            <Li style={{ width: '11%' }}>Rate</Li>
-            <Li>Status</Li>
-          </Ul>
-          {roomData.map((room) => (
-            <Card key={room.id}>
-              <CardGuest>
-                <img src={Logo} alt="Room" />
-                <ContainerName>
-                  <ID>#{room.id}</ID>
-                  <Name>{room.name}</Name>
-                </ContainerName>
-                <Text>{room.bed_type}</Text>
-                <Text>{room.room_number}</Text>
-                <Text style={{ width: '250px' }}>{room.Facilities}</Text>
-                <Price>{room.Price}$<span> /night</span></Price>
-                <ButtonStatus status={room.Status}>{room.Status}</ButtonStatus>
-                <MdDeleteOutline size={30} cursor={'pointer'} onClick={() => deleteRoom(room.id)} />
-              </CardGuest>
-            </Card>
-          ))}
+          <table >
+            <thead>
+              <Tr>
+                <Th>Room Name</Th>
+                <Th>Bed Type</Th>
+                <Th>Room Floor</Th>
+                <Th style={{ width: '20%' }}>Facilities</Th>
+                <Th>Rate</Th>
+                <Th>Status</Th>
+                <Th>Actions</Th>
+              </Tr>
+            </thead>
+            <tbody>
+              {roomData.map((room) => (
+                <Tr key={room.id} style={{ borderBottom: '1px solid #ddd' }}>
+                  <Td>
+                    <CardGuest>
+                      <img src={Logo} alt="Room" />
+                      <ContainerName>
+                        <ID>#{room.id}</ID>
+                        <Name>{room.name}</Name>
+                      </ContainerName>
+                    </CardGuest>
+                  </Td>
+                  <Td style={{ marginBottom: '5em' }}>{room.bed_type}</Td>
+                  <Td>{room.room_number}</Td>
+                  <Td style={{ textAlign: 'start' }}>{room.Facilities}</Td>
+                  <Td><Price>{room.Price}$<span> /night</span></Price></Td>
+                  <Td>
+                    <ButtonStatus status={room.Status}>{room.Status}</ButtonStatus>
+                  </Td>
+                  <Td style={{textAlign:'center'}}>
+                    <MdDeleteOutline size={30} cursor={'pointer'} onClick={() => deleteRoom(room.id)} />
+                  </Td>
+                </Tr>
+              ))}
+            </tbody>
+          </table>
         </Content>
       </Container>
     </>

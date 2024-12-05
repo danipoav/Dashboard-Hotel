@@ -17,14 +17,7 @@ export const Content = styled.div`
     background-color: white;
     padding: 1em;
     border-radius: 20px;
-`
-
-export const Card = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid lightgray;
-    justify-content: space-between;
+    text-align: left;
 `
 
 export const CardGuest = styled.div`
@@ -60,16 +53,8 @@ export const ID = styled.p`
     color: #799283;
 `;
 
-export const Text = styled.p`
-    color: #393939;
-    margin-right: 2.5em;
-    width: 150px;
-    font-weight: normal;
-`
-
 export const Price = styled.p`
     color: #393939;
-    margin-right: 2.5em;
     width: 100px;
     font-weight: bold;
 
@@ -88,7 +73,6 @@ export const ButtonStatus = styled.button`
     outline: none;
     border-radius: 10px;
     width: 150px;
-    margin-right: 4em;
 `
 
 
@@ -112,19 +96,18 @@ export const ButtonCreate = styled.button`
     }
 `
 
-export const Ul = styled.ul`
-    display: flex;
-    padding: 23px;
+export const Tr = styled.tr`
     border-bottom: 1px solid black;
-    padding-bottom: 1em;
-    padding-top: 0.5em;
 `
 
-export const Li = styled.li`
-    color: #393939;
-    font-weight: bold;
-    list-style: none;
-    width: 100px;
-    text-align: left;
-    font-size: 1.5em;
+export const Td = styled.td`
+padding: 10px;
+text-align: left;
+font-weight: normal;
+font-size: 0.8em;
+`
+
+export const Th = styled.th`
+    padding: 10px;
+    font-size: 1.1em;
 `
