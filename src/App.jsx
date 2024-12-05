@@ -6,6 +6,8 @@ import Room from './components/Dashboard/Room/Room';
 import { DashboardContent } from './components/Dashboard/DashboardContent';
 import Users from './components/Dashboard/Users/Users';
 import UsersCreate from './components/Dashboard/Users/UsersCreate';
+import Bookings from './components/Dashboard/Bookings/Bookings';
+import UsersShow from './components/Dashboard/Users/UsersShow';
 
 function App() {
 
@@ -36,10 +38,11 @@ function App() {
           />}
           <Route path="/home" element={isAuth ? <Dashboard /> : <Navigate to="/" />}>
             <Route index element={<DashboardContent />}></Route>
-            <Route path="room" element={<Room />}>
-            </Route>
+            <Route path="room" element={<Room />} />
+            <Route path='bookings' element={<Bookings />} />
             <Route path='users' element={<Users />}>
               <Route path='create' element={<UsersCreate />} />
+              <Route path='show' element={<UsersShow />} />
             </Route>
           </Route>
         </Routes>

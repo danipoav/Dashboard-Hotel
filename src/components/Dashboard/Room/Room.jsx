@@ -13,6 +13,7 @@ export default function Room() {
     const updateRoom = roomData.filter((room) => room.id !== id)
     setRoomData(updateRoom)
   }
+
   return (
     <>
       <Container>
@@ -20,7 +21,7 @@ export default function Room() {
           New Room <MdAddCircleOutline size={20} />
         </ButtonCreate>
         <Content>
-          <table >
+          <table style={{ borderCollapse: 'collapse' }}>
             <thead>
               <Tr>
                 <Th>Room Name</Th>
@@ -51,7 +52,7 @@ export default function Room() {
                   <Td>
                     <ButtonStatus status={room.Status}>{room.Status}</ButtonStatus>
                   </Td>
-                  <Td style={{textAlign:'center'}}>
+                  <Td style={{ textAlign: 'center' }}>
                     <MdDeleteOutline size={30} cursor={'pointer'} onClick={() => deleteRoom(room.id)} />
                   </Td>
                 </Tr>

@@ -26,7 +26,7 @@ export const Dashboard = () => {
                     </LogoContainer>
                     <MenuItem onClick={() => navigate('/home')}> <MdOutlineSpaceDashboard />Dashboard</MenuItem>
                     <MenuItem onClick={() => navigate('/home/room')}> <TfiKey />Room</MenuItem>
-                    <MenuItem> <FaRegCalendarCheck />Bookings</MenuItem>
+                    <MenuItem onClick={() => navigate('/home/bookings')}> <FaRegCalendarCheck />Bookings</MenuItem>
                     <MenuItem onClick={() => navigate('/home/users')}> <IoPersonOutline />Users</MenuItem>
                     <MenuItem> <IoExtensionPuzzleOutline />Concierge</MenuItem>
                 </SlidebarContainer>

@@ -105,6 +105,7 @@ padding: 10px;
 text-align: left;
 font-weight: normal;
 font-size: 0.8em;
+padding-bottom: 20px;
 `
 
 export const Th = styled.th`
