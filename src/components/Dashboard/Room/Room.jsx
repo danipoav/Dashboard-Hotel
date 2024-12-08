@@ -27,7 +27,7 @@ export default function Room() {
                 <Th>Room Name</Th>
                 <Th>Bed Type</Th>
                 <Th>Room Floor</Th>
-                <Th style={{ width: '20%' }}>Facilities</Th>
+                <Th><div style={{ width: '50%' }}>Facilities</div></Th>
                 <Th>Rate</Th>
                 <Th>Status</Th>
                 <Th>Actions</Th>

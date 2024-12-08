@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SlidebarContainer = styled.div`
-width: 350px;
+width: 300px;
 color: white;
 padding: 40px;
 height: 100vh;
@@ -34,6 +34,7 @@ align-items: center;
 padding: 20px;
 color: #799283;
 margin-bottom: 2em;
+width: 100%;
   div {
     margin-left: 30px;
   }

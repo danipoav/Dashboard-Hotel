@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const NotificationBar = styled.div`
-  width: calc(100% - 350px);  
+  width: calc(100% - 300px);  
   height: 100px;              
   padding: 15px;
   position: fixed;
   top: 0;
-  left: 350px;              
+  left: 300px;              
   display: flex;
   align-items: center;
   justify-content: space-between;

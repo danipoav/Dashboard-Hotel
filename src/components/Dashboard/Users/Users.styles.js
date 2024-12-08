@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: calc(100% - 350px);
+    width: calc(100% - 300px);
     margin-top: 5.5em;
-    margin-left: 350px;
+    margin-left: 300px;
     padding: 2em;
     margin-bottom: auto;
     background-color: #F8F8F8;
