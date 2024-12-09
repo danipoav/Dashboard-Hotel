@@ -25,6 +25,7 @@ export const CardGuest = styled.div`
     gap: 10px;
     align-items: center;
     text-align: center;
+    cursor: pointer;
     img{
         width: 150px;
         border-radius: 10px;

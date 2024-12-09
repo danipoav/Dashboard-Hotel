@@ -8,6 +8,7 @@ import Users from './components/Dashboard/Users/Users';
 import UsersCreate from './components/Dashboard/Users/UsersCreate';
 import Bookings from './components/Dashboard/Bookings/Bookings';
 import UsersShow from './components/Dashboard/Users/UsersShow';
+import RoomDetails from './components/Dashboard/Room/RoomDetails';
 
 function App() {
 
@@ -37,13 +38,19 @@ function App() {
             element={isAuth ? <Navigate to="/home" /> : <Form handleLogin={handleLogin} />}
           />}
           <Route path="/home" element={isAuth ? <Dashboard /> : <Navigate to="/" />}>
-            <Route index element={<DashboardContent />}></Route>
-            <Route path="room" element={<Room />} />
+
+            <Route index element={<DashboardContent />} />
+
+            <Route path="room" element={<Room />}>
+              <Route path='show/:id' element={<RoomDetails />} />
+            </Route>
             <Route path='bookings' element={<Bookings />} />
+
             <Route path='users' element={<Users />}>
               <Route path='create' element={<UsersCreate />} />
               <Route path='show' element={<UsersShow />} />
             </Route>
+
           </Route>
         </Routes>
       </BrowserRouter >
