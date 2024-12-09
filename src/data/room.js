@@ -1,9 +1,10 @@
 import { v4 } from "uuid"
+import Logo from "../assets/room_img.jpg"
 
 export const room = [
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/104x100.png/ff4444/ffffff",
+        "photo": Logo,
         "room_number": "Suite 65",
         "Price": 174,
         "bed_type": "Double Superior",
@@ -13,7 +14,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/176x100.png/5fa2dd/ffffff",
+        "photo": Logo,
         "room_number": "PO Box 90067",
         "Price": 384,
         "bed_type": "Suite",
@@ -23,7 +24,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/158x100.png/5fa2dd/ffffff",
+        "photo": Logo,
         "room_number": "Room 532",
         "Price": 851,
         "bed_type": "Double Superior",
@@ -33,7 +34,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/168x100.png/cc0000/ffffff",
+        "photo": Logo,
         "room_number": "Room 757",
         "Price": 807,
         "bed_type": "Suite",
@@ -43,7 +44,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/131x100.png/5fa2dd/ffffff",
+        "photo": Logo,
         "room_number": "Room 521",
         "Price": 252,
         "bed_type": "Suite",
@@ -53,7 +54,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/178x100.png/dddddd/000000",
+        "photo": Logo,
         "room_number": "PO Box 47666",
         "Price": 826,
         "bed_type": "Suite",
@@ -63,7 +64,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/138x100.png/ff4444/ffffff",
+        "photo": Logo,
         "room_number": "Apt 1579",
         "Price": 235,
         "bed_type": "Double Bed",
@@ -73,7 +74,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/231x100.png/ff4444/ffffff",
+        "photo":Logo,
         "room_number": "PO Box 20698",
         "Price": 510,
         "bed_type": "Double Superior",
@@ -83,7 +84,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/194x100.png/ff4444/ffffff",
+        "photo": Logo,
         "room_number": "Suite 49",
         "Price": 739,
         "bed_type": "Double Superior",
@@ -93,7 +94,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/209x100.png/5fa2dd/ffffff",
+        "photo": Logo,
         "room_number": "Room 1816",
         "Price": 862,
         "bed_type": "Double Superior",
@@ -103,7 +104,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/224x100.png/cc0000/ffffff",
+        "photo": Logo,
         "room_number": "Room 1250",
         "Price": 382,
         "bed_type": "Single Bed",
@@ -113,7 +114,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/133x100.png/dddddd/000000",
+        "photo": Logo,
         "room_number": "PO Box 18255",
         "Price": 640,
         "bed_type": "Double Bed",
@@ -123,7 +124,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/203x100.png/5fa2dd/ffffff",
+        "photo": Logo,
         "room_number": "Room 989",
         "Price": 735,
         "bed_type": "Double Superior",
@@ -133,7 +134,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/147x100.png/5fa2dd/ffffff",
+        "photo": Logo,
         "room_number": "5th Floor",
         "Price": 839,
         "bed_type": "Double Bed",
@@ -143,7 +144,7 @@ export const room = [
     },
     {
         "id": v4(),
-        "photo": "http://dummyimage.com/115x100.png/cc0000/ffffff",
+        "photo": Logo,
         "room_number": "Suite 99",
         "Price": 256,
         "bed_type": "Single Bed",

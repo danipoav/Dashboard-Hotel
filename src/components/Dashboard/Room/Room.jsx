@@ -3,7 +3,6 @@ import { Container, Content, CardGuest, ContainerName, Name, ID, ButtonStatus, P
 import { MdDeleteOutline } from "react-icons/md";
 import { room } from '../../../data/room';
 import { MdAddCircleOutline } from "react-icons/md";
-import Logo from "../../../assets/room_img.jpg"
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 
 export default function Room() {
@@ -21,12 +20,16 @@ export default function Room() {
     navigate(`show/${room.id}`, { state: { room } })
   }
 
+  const handleCreate = () => {
+    navigate('create')
+  }
+
   return (
     <>
       <Outlet />
       {location.pathname === '/home/room' && (
         <Container>
-          <ButtonCreate>
+          <ButtonCreate onClick={handleCreate}>
             New Room <MdAddCircleOutline size={20} />
           </ButtonCreate>
           <Content>
@@ -47,7 +50,7 @@ export default function Room() {
                   <Tr key={room.id} style={{ borderBottom: '1px solid #ddd' }}>
                     <Td >
                       <CardGuest onClick={() => handleShow(room)}>
-                        <img src={Logo} alt="Room" />
+                        <img src={room.photo} alt="Room" />
                         <ContainerName>
                           <ID>#{room.id}</ID>
                           <Name>{room.name}</Name>

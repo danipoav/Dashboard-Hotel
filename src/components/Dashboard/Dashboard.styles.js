@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const SlidebarContainer = styled.div`
 width: 300px;
 color: white;
-padding: 40px;
 height: 100vh;
 padding-top: 1em;
 position: fixed;

@@ -9,6 +9,7 @@ import UsersCreate from './components/Dashboard/Users/UsersCreate';
 import Bookings from './components/Dashboard/Bookings/Bookings';
 import UsersShow from './components/Dashboard/Users/UsersShow';
 import RoomDetails from './components/Dashboard/Room/RoomDetails';
+import RoomCreate from './components/Dashboard/Room/RoomCreate';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
 
             <Route path="room" element={<Room />}>
               <Route path='show/:id' element={<RoomDetails />} />
+              <Route path='create' element={<RoomCreate />} />
             </Route>
             <Route path='bookings' element={<Bookings />} />
 
