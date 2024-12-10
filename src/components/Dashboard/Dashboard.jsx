@@ -1,12 +1,13 @@
 import { useNavigate, Outlet } from 'react-router-dom';
-import { SlidebarContainer, MenuItem, LogoContainer, Title, Subtitle } from './Dashboard.styles'
-import { FaHotel } from "react-icons/fa";
+import { SlidebarContainer, MenuItem, LogoContainer} from './Dashboard.styles'
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { TfiKey } from "react-icons/tfi";
 import { IoPersonOutline } from "react-icons/io5";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import { IoExtensionPuzzleOutline } from "react-icons/io5";
 import TopBar from './TopBar/TopBar';
+import Logo from '../../assets/hotellogo.png'
+
 
 
 export const Dashboard = () => {
@@ -18,11 +19,7 @@ export const Dashboard = () => {
             <div>
                 <SlidebarContainer>
                     <LogoContainer>
-                        <FaHotel size={40} />
-                        <div>
-                            <Title>travl</Title>
-                            <Subtitle>Hotel Admin Dashboard</Subtitle>
-                        </div>
+                        <img src={Logo} alt="logo" style={{ display:'flex', justifyContent:'center', width:'90%' }} />
                     </LogoContainer>
                     <MenuItem onClick={() => navigate('/home')}> <MdOutlineSpaceDashboard />Dashboard</MenuItem>
                     <MenuItem onClick={() => navigate('/home/room')}> <TfiKey />Room</MenuItem>

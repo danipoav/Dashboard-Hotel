@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
+
 export const SlidebarContainer = styled.div`
 width: 300px;
 color: white;
 height: 100vh;
-padding-top: 1em;
 position: fixed;
 top: 0;
 `;
@@ -13,9 +13,11 @@ export const MenuItem = styled.div`
 display: flex;
 align-items: center;
 padding: 20px;
+padding-left: 15%;
 cursor: pointer;
 color: #799283;
-
+font-family: "Poppins", sans-serif;
+font-weight: 300;
   svg {
     margin-right: 20px;
     font-size: 1.5em;
@@ -30,9 +32,10 @@ color: #799283;
 export const LogoContainer = styled.div`
 display: flex;
 align-items: center;
+justify-content: center;
 padding: 20px;
 color: #799283;
-margin-bottom: 2em;
+margin-bottom: 1em;
 width: 100%;
   div {
     margin-left: 30px;
@@ -40,20 +43,6 @@ width: 100%;
   svg{
     color: #135846;
   }
-`;
-
-export const Title = styled.h1`
-font-size: 1.5em;
-font-weight: bold;
-margin: 0;
-color: #212121;
-`;
-
-export const Subtitle = styled.p`
-font-size: 0.7em;
-color: #aaa;
-margin: 0;
-color: #5D5449;
 `;
 
 export const NotificationBar = styled.div`

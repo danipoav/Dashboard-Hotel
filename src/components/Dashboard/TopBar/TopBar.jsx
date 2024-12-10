@@ -1,4 +1,5 @@
-import { CiSearch } from "react-icons/ci";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../../store/slices/authSlice";
 import { CiMail } from "react-icons/ci";
 import { IoIosLogOut } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -7,11 +8,10 @@ import { FaBars } from "react-icons/fa";
 export default function TopBar() {
 
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
 
     const handleLogOut = () => {
-        localStorage.removeItem('isAuth')
-        navigate('')
+        dispatch(logout())
     }
     return (
         <NotificationBar>

@@ -10,24 +10,16 @@ import Bookings from './components/Dashboard/Bookings/Bookings';
 import UsersShow from './components/Dashboard/Users/UsersShow';
 import RoomDetails from './components/Dashboard/Room/RoomDetails';
 import RoomCreate from './components/Dashboard/Room/RoomCreate';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from './store/slices/authSlice';
 
 function App() {
 
-  const [isAuth, setIsAuth] = useState(false)
-  useEffect(() => {
-    const status = localStorage.getItem('isAuth');
-    if (status === 'true') {
-      setIsAuth(true)
-    }
-  }, [])
+  const dispatch = useDispatch();
+  const isAuth = useSelector((state) => state.auth.isAuthenticated)
 
   const handleLogin = (email, password) => {
-    if (email === 'user@user.com' && password === 'user') {
-      setIsAuth(true);
-      localStorage.setItem('isAuth', 'true')
-    } else {
-      alert('Credenciales incorrectas');
-    }
+    dispatch(login({email, password}))
   }
 
   return (
