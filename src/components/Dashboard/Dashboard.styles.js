@@ -59,3 +59,53 @@ font-size: 1em;
 border-bottom: 1px solid lightgray;
 z-index: 1000;            
 `;
+
+export const UserContainer = styled.div`
+  box-shadow: 0 0 15px rgb(0,0,0,0.2);
+  border-radius: 20px;
+  background-color: white;
+  margin: 2em 3em;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 2em 0;
+  padding-bottom: 1em;
+
+  img{
+    width: 50%;
+    margin-bottom: 0;
+    align-self: center;
+    border-radius: 1em;
+    margin-bottom: 1em;
+  }
+`
+
+export const Title = styled.h3`
+font-size: 0.9em;
+`
+
+export const Email = styled.p`
+font-size: 0.6em;
+color: #B2B2B2;
+`
+
+export const ButtonEdit = styled.button`
+all: unset;
+padding: 5px 20px;
+width: 50%;
+align-self: center;
+background-color: #EBF1EF;
+color: #135846;
+border-radius: 10px;
+margin-top: 0.5em;
+cursor: pointer;
+`
+
+export const Input = styled.input`
+margin-top:1em;
+  all: unset;
+  font-size: 0.8em;
+  border: 0.5px solid #135846;
+`
