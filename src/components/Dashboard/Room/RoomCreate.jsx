@@ -1,29 +1,64 @@
 import { Container, Content, Title, CreateForm, Label, Input, SubmitButton } from "./RoomCreate.styles"
-import { useOutletContext, useNavigate } from "react-router-dom"
-import { v4 } from "uuid";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addRoom, editRoom, unsetRoom } from "../../../store/slices/roomSlice";
+import { useSelector } from "react-redux";
 
 export default function RoomCreate() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const room = useSelector((state) => state.rooms.room)
+
   const [data, setData] = useState({
-    id: v4(),
     name: "",
-    image: "",
-    order_date: "",
-    check_in: "",
-    check_out: "",
-    room_type: "",
+    photo: "",
+    room_number: "",
+    bed_type: "",
+    facilities: "",
+    status: "",
+    price: ""
   })
 
+  useEffect(() => {
+    if (room) {
+      setData(room);
+    } else {
+      setData({
+        name: "",
+        photo: "",
+        room_number: "",
+        bed_type: "",
+        facilities: "",
+        status: "",
+        price: ""
+      });
+    }
+  }, [room]);
+
   const handleChange = (e) => {
-    console.log(e.target.value)
-    setData({ ...data, [e.target.name]: e.target.value })
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value })
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    navigate('/home/users')
+    e.preventDefault();
+    if (room) {
+      dispatch(editRoom(data));
+    } else {
+      dispatch(addRoom(data));
+    }
+    navigate('/home/room');
+  }
+
+  const handleCancel = () => {
+    if (room != null) {
+      dispatch(unsetRoom)
+      navigate('home/room')
+    } else {
+      navigate('/home/room')
+    }
   }
 
   return (
@@ -39,66 +74,76 @@ export default function RoomCreate() {
               <Input
                 type="text"
                 name="name"
-                value={data.name}
-                onChange={handleChange}
                 required
+                onChange={handleChange}
+                value={data.name}
               />
             </Label>
             <Label>
               Image (URL):
               <Input
                 type="text"
-                name="image"
-                value={data.image}
-                onChange={handleChange}
+                name="photo"
                 required
+                onChange={handleChange}
+                value={data.photo}
               />
             </Label>
             <Label>
-              Order Date:
+              Room number:
               <Input
-                type="date"
-                name="order_date"
-                value={data.order_date}
-                onChange={handleChange}
+                type="text"
+                name="room_number"
                 required
+                onChange={handleChange}
+                value={data.room_number}
               />
             </Label>
             <Label>
-              Check-in:
+              Bed type:
               <Input
-                type="date"
-                name="check_in"
-                value={data.check_in}
-                onChange={handleChange}
+                type="text"
+                name="bed_type"
                 required
+                onChange={handleChange}
+                value={data.bed_type}
               />
             </Label>
             <Label>
-              Check-out:
+              Facilities:
               <Input
-                type="date"
-                name="check_out"
-                value={data.check_out}
-                onChange={handleChange}
+                type="text"
+                name="facilities"
                 required
+                onChange={handleChange}
+                value={data.facilities}
               />
             </Label>
             <Label>
-              Type Room:
+              Status:
+              <Input
+                type="text"
+                name="status"
+                required
+                onChange={handleChange}
+                value={data.status}
+              />
+            </Label>
+            <Label>
+              Price:
               <Input
                 type="number"
-                name="room_type"
-                value={data.room_type}
-                onChange={handleChange}
+                name="price"
                 required
+                onChange={handleChange}
+                value={data.price}
               />
             </Label>
-            <SubmitButton type="submit">Create</SubmitButton>
+            <SubmitButton onClick={handleCancel} style={{ backgroundColor: 'red' }}>Cancel</SubmitButton>
+            <SubmitButton type="submit">{room ? 'Edit' : 'Create'}</SubmitButton>
           </CreateForm>
         </Content>
       </Container>
     </>
   )
 }
-

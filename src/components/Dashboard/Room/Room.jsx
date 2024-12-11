@@ -3,7 +3,9 @@ import { MdDeleteOutline } from "react-icons/md";
 import { MdAddCircleOutline } from "react-icons/md";
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRoom, removeRoom } from '../../../store/slices/roomSlice';
+import { removeRoom, setRoom } from '../../../store/slices/roomSlice';
+import { FaRegEdit } from "react-icons/fa";
+
 
 export default function Room() {
 
@@ -22,8 +24,13 @@ export default function Room() {
     navigate('create')
   }
 
+  const handleEdit = (room) => {
+    dispatch(setRoom(room))
+    navigate('create')
+  }
+
   const dispatch = useDispatch();
-  const rooms = useSelector((state) => state.rooms)
+  const rooms = useSelector((state) => state.rooms.rooms)
 
   return (
     <>
@@ -60,12 +67,13 @@ export default function Room() {
                     </Td>
                     <Td style={{ marginBottom: '5em' }}>{room.bed_type}</Td>
                     <Td>{room.room_number}</Td>
-                    <Td style={{ textAlign: 'start' }}>{room.Facilities}</Td>
-                    <Td><Price>{room.Price}$<span> /night</span></Price></Td>
+                    <Td style={{ textAlign: 'start' }}>{room.facilities}</Td>
+                    <Td><Price>{room.price}$<span> /night</span></Price></Td>
                     <Td>
-                      <ButtonStatus status={room.Status}>{room.Status}</ButtonStatus>
+                      <ButtonStatus status={room.status}>{room.status}</ButtonStatus>
                     </Td>
                     <Td style={{ textAlign: 'center' }}>
+                      <FaRegEdit size={30} cursor={'pointer'} onClick={() => handleEdit(room)} />
                       <MdDeleteOutline size={30} cursor={'pointer'} onClick={() => deleteRoom(room.id)} />
                     </Td>
                   </Tr>

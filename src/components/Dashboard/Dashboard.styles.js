@@ -104,8 +104,10 @@ cursor: pointer;
 `
 
 export const Input = styled.input`
-margin-top:1em;
-  all: unset;
-  font-size: 0.8em;
-  border: 0.5px solid #135846;
+all: unset;
+color: turquoise;
+margin: 0 1em;
+font-size: 0.8em;
+border-radius: 10px;
+box-shadow: 0 0 15px rgb(0,0,0,0.1);
 `

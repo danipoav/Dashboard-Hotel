@@ -23,7 +23,7 @@ export const Content = styled.div`
 `
 
 export const Title = styled.h1`
-    font-size: 1.5em;
+    font-size: 1em;
     color: black;
     margin: 1em 0;
     margin-top: 0.5em;
@@ -48,7 +48,7 @@ export const FormContainer = styled.div`
 
 
 export const Label = styled.label`
-  font-size: 1em;
+  font-size: 0.8em;
   color: #333;
   display: flex;
   flex-direction: column;
@@ -56,7 +56,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  padding: 5px;
+  padding: 3px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -79,7 +79,8 @@ export const SubmitButton = styled.button`
   cursor: pointer;
   transition: background-color 0.3s;
   margin-top: 1em;
-  width: 100%;
+  width: 46%;
+  margin: 10px;
   &:hover {
     background-color: #0056b3;
   }

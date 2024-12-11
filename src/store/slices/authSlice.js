@@ -6,7 +6,7 @@ const authSlice = createSlice({
         emailAuth: 'user@user.com',
         password: 'user',
         isAuthenticated: JSON.parse(localStorage.getItem('isAuth')) || false,
-        userProfile: {
+        userProfile: JSON.parse(localStorage.getItem('userProfile')) || {
             name: 'Daniel',
             email: 'dapoav2002gmail.com'
         }
