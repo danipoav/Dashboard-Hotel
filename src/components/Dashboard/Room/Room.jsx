@@ -1,19 +1,17 @@
-import React, { useState } from 'react'
 import { Container, Content, CardGuest, ContainerName, Name, ID, ButtonStatus, Price, ButtonCreate, Tr, Td, Th } from './Room.styles'
 import { MdDeleteOutline } from "react-icons/md";
-import { room } from '../../../data/room';
 import { MdAddCircleOutline } from "react-icons/md";
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addRoom, removeRoom } from '../../../store/slices/roomSlice';
 
 export default function Room() {
 
-  const [roomData, setRoomData] = useState(room)
   const navigate = useNavigate();
   const location = useLocation()
 
   const deleteRoom = (id) => {
-    const updateRoom = roomData.filter((room) => room.id !== id)
-    setRoomData(updateRoom)
+    dispatch(removeRoom(id))
   }
 
   const handleShow = (room) => {
@@ -23,6 +21,9 @@ export default function Room() {
   const handleCreate = () => {
     navigate('create')
   }
+
+  const dispatch = useDispatch();
+  const rooms = useSelector((state) => state.rooms)
 
   return (
     <>
@@ -46,7 +47,7 @@ export default function Room() {
                 </Tr>
               </thead>
               <tbody>
-                {roomData.map((room) => (
+                {rooms.map((room) => (
                   <Tr key={room.id} style={{ borderBottom: '1px solid #ddd' }}>
                     <Td >
                       <CardGuest onClick={() => handleShow(room)}>
