@@ -44,13 +44,13 @@ export const ContainerName = styled.div`
 
 export const Name = styled.h3`
     margin: 0;
-    font-size: 1em;
+    font-size: 0.9em;
     color: #262626;
 `;
 
 export const ID = styled.p`
     margin: 0;
-    font-size: 0.8em;
+    font-size: 0.4em;
     color: #799283;
 `;
 

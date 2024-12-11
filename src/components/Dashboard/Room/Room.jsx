@@ -56,7 +56,7 @@ export default function Room() {
               <tbody>
                 {rooms.map((room) => (
                   <Tr key={room.id} style={{ borderBottom: '1px solid #ddd' }}>
-                    <Td >
+                    <Td>
                       <CardGuest onClick={() => handleShow(room)}>
                         <img src={room.photo} alt="Room" />
                         <ContainerName>

@@ -14,27 +14,9 @@ export const Container = styled.div`
 export const Content = styled.div`
     width: 100%;
     background-color: white;
-    padding: 1em;
     border-radius: 20px;
     text-align: start;
-`
-
-export const Card = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid lightgray;
-    justify-content: space-between;
-`
-
-export const CardGuest = styled.div`
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    img{
-        width: 4%;
-        border-radius: 10px;
-    }
+    padding: 0 1em;
 `
 
 export const ContainerName = styled.div`
@@ -60,9 +42,8 @@ export const ID = styled.p`
 
 export const Text = styled.p`
     color: #393939;
-    margin-right: 2.5em;
     width: 150px;
-
+    font-size: 0.8em;
 `
 
 export const ButtonNotes = styled.button`
@@ -72,7 +53,6 @@ export const ButtonNotes = styled.button`
     padding: 10px 35px;
     outline: none;
     border-radius: 10px;
-    margin-right: 2.5em;
 
 `
 
@@ -83,7 +63,6 @@ export const ButtonRefund = styled.button`
     padding: 10px 35px;
     outline: none;
     border-radius: 10px;
-    margin-right: 4em;
 `
 
 export const ButtonCreate = styled.button`
@@ -103,4 +82,30 @@ export const ButtonCreate = styled.button`
     svg{
         margin-left: 8px;
     }
+`
+
+export const Tr = styled.tr`
+
+`
+
+export const Th = styled.th`
+text-align:center;
+padding: 20px;
+border-bottom: 1px solid black;
+`
+
+export const Td = styled.td`
+    padding:10px;
+    border-bottom: 1px solid #9E9E9E;
+    text-align: center;
+`
+
+export const TdGuest = styled.td`
+display:flex;
+border-bottom: 1px solid black;
+padding: 10px;
+img{
+    border-radius: 20px;
+    width: 40%;
+}
 `
