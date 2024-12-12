@@ -2,7 +2,7 @@ import { Container, Content, Title, CreateForm, Label, Input, SubmitButton } fro
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addRoom, editRoom, unsetRoom } from "../../../store/slices/roomSlice";
+import { unFetchRoom, updatedRoom, createRoom } from "../../../store/thunk/roomThunk";
 import { useSelector } from "react-redux";
 
 export default function RoomCreate() {
@@ -45,16 +45,16 @@ export default function RoomCreate() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (room) {
-      dispatch(editRoom(data));
+      dispatch(updatedRoom(data));
     } else {
-      dispatch(addRoom(data));
+      dispatch(createRoom(data));
     }
     navigate('/home/room');
   }
 
   const handleCancel = () => {
     if (room != null) {
-      dispatch(unsetRoom)
+      dispatch(unFetchRoom())
       navigate('home/room')
     } else {
       navigate('/home/room')

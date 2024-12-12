@@ -3,8 +3,9 @@ import { MdDeleteOutline } from "react-icons/md";
 import { MdAddCircleOutline } from "react-icons/md";
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeRoom, setRoom, unsetRoom } from '../../../store/slices/roomSlice';
 import { FaRegEdit } from "react-icons/fa";
+import { useEffect } from 'react';
+import { fetchRooms, deleteRoom, unFetchRoom, fetchRoom } from '../../../store/thunk/roomThunk';
 
 export default function Room() {
 
@@ -13,21 +14,22 @@ export default function Room() {
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.rooms.rooms);
 
-  const deleteRoom = (id) => {
-    dispatch(removeRoom(id))
-  }
+  useEffect(() => {
+    dispatch(fetchRooms())
+  }, [dispatch])
 
   const handleShow = (room) => {
-    navigate(`show/${room.id}`, { state: { room } })
+    dispatch(fetchRoom(room))
+    navigate(`show/${room.id}`)
   }
 
   const handleCreate = () => {
-    dispatch(unsetRoom())
+    dispatch(unFetchRoom())
     navigate('create')
   }
 
   const handleEdit = (room) => {
-    dispatch(setRoom(room))
+    dispatch(fetchRoom(room))
     navigate('create')
   }
 
@@ -78,7 +80,7 @@ export default function Room() {
                     </Td>
                     <Td style={{ textAlign: 'center' }}>
                       <FaRegEdit size={30} cursor={'pointer'} onClick={() => handleEdit(room)} />
-                      <MdDeleteOutline size={30} cursor={'pointer'} onClick={() => deleteRoom(room.id)} />
+                      <MdDeleteOutline size={30} cursor={'pointer'} onClick={() => dispatch(deleteRoom(room.id))} />
                     </Td>
                   </Tr>
                 ))}

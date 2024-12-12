@@ -1,12 +1,11 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 import { Container, Content, RoomImage, Title, RoomDetailsList, PriceTag } from './RoomDetails.styles';
 
 export default function RoomDetails() {
 
-    const location = useLocation();
-    const room = location.state.room
-
+    const room = useSelector((state) => state.rooms.room)
+    
     return (
         <>
             <Container>
