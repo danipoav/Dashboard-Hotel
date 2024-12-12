@@ -18,10 +18,14 @@ cursor: pointer;
 color: #799283;
 font-family: "Poppins", sans-serif;
 font-weight: 300;
+color: ${({ isActive }) => (isActive ? 'red' : 'black')};
+border-left: ${({ isActive }) => (isActive ? '4px solid red' : 'none')};
+background-color: ${({ isActive }) => (isActive ? '#f9f9f9' : 'transparent')};
+
   svg {
     margin-right: 20px;
     font-size: 1.5em;
-    color: #135846;
+    color: ${({isActive}) => (isActive ? 'red' : '#135846')}
   }
 
   &:hover {

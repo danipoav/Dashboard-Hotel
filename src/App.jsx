@@ -7,9 +7,9 @@ import { DashboardContent } from './components/Dashboard/DashboardContent';
 import Users from './components/Dashboard/Users/Users';
 import UsersCreate from './components/Dashboard/Users/UsersCreate';
 import Bookings from './components/Dashboard/Bookings/Bookings';
-import UsersShow from './components/Dashboard/Users/UsersShow';
 import RoomDetails from './components/Dashboard/Room/RoomDetails';
 import RoomCreate from './components/Dashboard/Room/RoomCreate';
+import UsersDetails from './components/Dashboard/Users/UsersDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from './store/slices/authSlice';
 
@@ -19,7 +19,7 @@ function App() {
   const isAuth = useSelector((state) => state.auth.isAuthenticated)
 
   const handleLogin = (email, password) => {
-    dispatch(login({email, password}))
+    dispatch(login({ email, password }))
   }
 
   return (
@@ -42,7 +42,7 @@ function App() {
 
             <Route path='users' element={<Users />}>
               <Route path='create' element={<UsersCreate />} />
-              <Route path='show' element={<UsersShow />} />
+              <Route path='show/:id' element={<UsersDetails />} />
             </Route>
 
           </Route>

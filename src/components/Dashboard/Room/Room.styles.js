@@ -4,12 +4,10 @@ export const Container = styled.div`
     width: calc(100% - 300px);
     margin-top: 5.5em;
     margin-left: 300px;
-    padding: 3em;
-    padding-top: 2em;
+    padding: 2em;
     margin-bottom: auto;
     background-color: #F8F8F8;
     min-height: calc(100vh - 5.5em);
-    text-align: -webkit-right;
 `
 
 export const Content = styled.div`
@@ -112,4 +110,25 @@ padding-bottom: 20px;
 export const Th = styled.th`
     padding: 10px;
     font-size: 1.1em;
+`
+
+export const Ul = styled.ul`
+    list-style: none;
+    text-align: left;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1em;
+`
+
+export const Li = styled.li`
+    padding: 10px 20px;
+    cursor: pointer;
+    color: ${({ isActive }) => (isActive ? '#135846' : '#C5C5C5')};
+    border-bottom: ${({ isActive }) => (isActive ? '2px solid #135846' : '2px solid #C5C5C5')};
+    transition: color 0.3s, border-bottom 0.3s;
+
+    &:hover {
+        color: ${({ isActive }) => (isActive ? '#135846' : '#6E6E6E')};
+    }
 `

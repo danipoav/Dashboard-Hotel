@@ -1,33 +1,50 @@
-import React, { useState } from 'react';
-import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonRefund, ButtonCreate, Th, Tr, Td } from './Users.styles';
-import { guest } from '../../../data/guest';
+import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonRefund, ButtonCreate, Th, Tr, Td, Ul, Li } from './Users.styles';
 import { MdAddCircleOutline, MdDeleteOutline } from "react-icons/md";
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { removeUser, setUser, unsetUser } from '../../../store/slices/userSlice';
+import { useDispatch } from 'react-redux';
+import { FaRegEdit } from "react-icons/fa";
+
 
 export default function Users() {
-    const [guests, setGuests] = useState(guest);
+
+    const dispatch = useDispatch()
+    const users = useSelector((state) => state.users.users)
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleCreate = () => navigate('create');
-
-    const deleteGuest = (id) => {
-        const updatedGuests = guests.filter((guest) => guest.id !== id);
-        setGuests(updatedGuests);
+    const handleCreate = () => {
+        dispatch(unsetUser())
+        navigate('create');
     };
 
-    const createUser = (newData) => {
-        setGuests((prevGuests) => [...prevGuests, newData]);
-    };
+    const handleEdit = (user) => {
+        dispatch(setUser(user))
+        navigate('create')
+    }
+
+    const handleShow = (user) => {
+        console.log('aaaa')
+        navigate(`show/${user.id}`, { state: { user } })
+    }
+
 
     return (
         <>
-            <Outlet context={{ createUser }} />
+            <Outlet />
             {location.pathname === '/home/users' && (
                 <Container>
                     <ButtonCreate onClick={handleCreate}>
                         New Employee <MdAddCircleOutline size={20} />
                     </ButtonCreate>
+                    <Ul>
+                        <Li isActive>All Guest</Li>
+                        <Li>Pending</Li>
+                        <Li>Booked</Li>
+                        <Li>Canceled</Li>
+                        <Li>Refund</Li>
+                    </Ul>
                     <Content>
                         <table style={{ borderCollapse: 'collapse', width: '100%' }}>
                             <thead>
@@ -43,12 +60,12 @@ export default function Users() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {guests.map((user) => (
+                                {users.map((user) => (
                                     <Tr key={user.id}>
                                         <Td>
-                                            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                            <div onClick={() => handleShow(user)} style={{ display: 'flex', gap: '10px', alignItems: 'center', cursor: 'pointer' }}>
                                                 <img src={user.image} alt={`Guest ${user.name}`} style={{ width: '60px', borderRadius: '10px' }} />
-                                                <div style={{textAlign:'left'}}>
+                                                <div style={{ textAlign: 'left' }}>
                                                     <Name>{user.name}</Name>
                                                     <ID>#{user.id}</ID>
                                                 </div>
@@ -71,10 +88,8 @@ export default function Users() {
                                         <Td><Text>Deluxe A - {user.room_type}</Text></Td>
                                         <Td><ButtonRefund>Refund</ButtonRefund></Td>
                                         <Td>
-                                            <MdDeleteOutline
-                                                size={30}
-                                                style={{ cursor: 'pointer' }}
-                                                onClick={() => deleteGuest(user.id)}
+                                            <FaRegEdit size={30} cursor={'pointer'} onClick={() => handleEdit(user)} />
+                                            <MdDeleteOutline size={30} style={{ cursor: 'pointer' }} onClick={() => dispatch(removeUser(user.id))}
                                             />
                                         </Td>
                                     </Tr>

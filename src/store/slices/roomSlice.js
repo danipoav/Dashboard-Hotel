@@ -32,7 +32,6 @@ export const roomSlice = createSlice({
                     ? { ...room, ...action.payload }
                     : room
             );
-            console.log(action.payload)
             localStorage.setItem('rooms', JSON.stringify(updatedRooms));
             return {
                 ...state,

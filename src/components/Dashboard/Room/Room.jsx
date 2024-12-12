@@ -1,16 +1,17 @@
-import { Container, Content, CardGuest, ContainerName, Name, ID, ButtonStatus, Price, ButtonCreate, Tr, Td, Th } from './Room.styles'
+import { Container, Content, CardGuest, ContainerName, Name, ID, ButtonStatus, Price, ButtonCreate, Tr, Td, Th, Ul, Li } from './Room.styles'
 import { MdDeleteOutline } from "react-icons/md";
 import { MdAddCircleOutline } from "react-icons/md";
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeRoom, setRoom } from '../../../store/slices/roomSlice';
+import { removeRoom, setRoom, unsetRoom } from '../../../store/slices/roomSlice';
 import { FaRegEdit } from "react-icons/fa";
-
 
 export default function Room() {
 
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const rooms = useSelector((state) => state.rooms.rooms);
 
   const deleteRoom = (id) => {
     dispatch(removeRoom(id))
@@ -21,6 +22,7 @@ export default function Room() {
   }
 
   const handleCreate = () => {
+    dispatch(unsetRoom())
     navigate('create')
   }
 
@@ -28,9 +30,6 @@ export default function Room() {
     dispatch(setRoom(room))
     navigate('create')
   }
-
-  const dispatch = useDispatch();
-  const rooms = useSelector((state) => state.rooms.rooms)
 
   return (
     <>
@@ -40,6 +39,11 @@ export default function Room() {
           <ButtonCreate onClick={handleCreate}>
             New Room <MdAddCircleOutline size={20} />
           </ButtonCreate>
+          <Ul>
+            <Li isActive>All rooms</Li>
+            <Li>Active Employee</Li>
+            <Li>Unactive Employee</Li>
+          </Ul>
           <Content>
             <table style={{ borderCollapse: 'collapse' }}>
               <thead>

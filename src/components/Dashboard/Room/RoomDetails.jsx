@@ -1,7 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { Container, Content, RoomImage, Title, RoomDetailsList, PriceTag } from './RoomDetails.styles';
-import styled from 'styled-components';
 
 export default function RoomDetails() {
 
@@ -28,7 +27,7 @@ export default function RoomDetails() {
                             <strong>Status:</strong> {room.Status}
                         </li>
                     </RoomDetailsList>
-                    <PriceTag>${room.Price} / night</PriceTag>
+                    <PriceTag>${room.price} / night</PriceTag>
                 </Content>
             </Container>
         </>

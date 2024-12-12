@@ -1,14 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Container, Content, Title, CreateForm, Label, Input, SubmitButton } from "./UsersCreate.styles"
-import { useOutletContext, useNavigate } from "react-router-dom"
-import { v4 } from "uuid";
+import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, editUser, unsetUser } from "../../../store/slices/userSlice";
 
 export default function UsersCreate() {
 
-    const { createUser } = useOutletContext();
+    const user = useSelector((state) => state.users.user)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [data, setData] = useState({
-        id: v4(),
         name: "",
         image: "",
         order_date: "",
@@ -17,14 +18,41 @@ export default function UsersCreate() {
         room_type: "",
     })
 
+    useEffect(() => {
+        if (user) {
+            setData(user);
+        } else {
+            setData({
+                name: "",
+                image: "",
+                order_date: "",
+                check_in: "",
+                check_out: "",
+                room_type: "",
+            });
+        }
+    }, [user]);
+
     const handleChange = (e) => {
-        console.log(e.target.value)
-        setData({ ...data, [e.target.name]: e.target.value })
+        const { name, value } = e.target;
+        setData({ ...data, [name]: value })
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        createUser(data);
+        e.preventDefault();
+        if (user) {
+            console.log(data)
+            dispatch(editUser(data));
+        } else {
+            dispatch(addUser(data));
+        }
+        navigate('/home/users');
+    }
+
+    const handleCancel = () => {
+        if (user != null) {
+            dispatch(unsetUser())
+        }
         navigate('/home/users')
     }
 
@@ -33,7 +61,7 @@ export default function UsersCreate() {
             <Container>
                 <Content>
                     <Title>
-                        Create new User
+                        {user ? 'Edit User' : 'Create new User'}
                     </Title>
                     <CreateForm onSubmit={handleSubmit}>
                         <Label>
@@ -96,7 +124,8 @@ export default function UsersCreate() {
                                 required
                             />
                         </Label>
-                        <SubmitButton type="submit">Create</SubmitButton>
+                        <SubmitButton onClick={handleCancel} style={{ backgroundColor: 'red' }}>Cancel</SubmitButton>
+                        <SubmitButton type="submit">{user ? 'Edit' : 'Create'}</SubmitButton>
                     </CreateForm>
                 </Content>
             </Container>

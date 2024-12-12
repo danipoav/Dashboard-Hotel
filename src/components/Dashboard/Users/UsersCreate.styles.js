@@ -80,6 +80,8 @@ export const SubmitButton = styled.button`
   transition: background-color 0.3s;
   margin-top: 1em;
   width: 100%;
+  width: 46%;
+  margin: 10px;
   &:hover {
     background-color: #0056b3;
   }

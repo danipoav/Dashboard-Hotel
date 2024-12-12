@@ -66,7 +66,7 @@ export default function RoomCreate() {
       <Container>
         <Content>
           <Title>
-            Create new User
+            {room ? 'Edit Room' : 'Create new Room'}
           </Title>
           <CreateForm onSubmit={handleSubmit}>
             <Label>
