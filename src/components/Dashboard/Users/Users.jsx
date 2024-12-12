@@ -2,9 +2,10 @@ import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonR
 import { MdAddCircleOutline, MdDeleteOutline } from "react-icons/md";
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { removeUser, setUser, unsetUser } from '../../../store/slices/userSlice';
+import { unFetchUser, fetchUser, deleteUser, fetchUsers } from '../../../store/thunk/userThunk';
 import { useDispatch } from 'react-redux';
 import { FaRegEdit } from "react-icons/fa";
+import { useEffect } from 'react';
 
 
 export default function Users() {
@@ -14,13 +15,17 @@ export default function Users() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    useEffect(() => {
+        dispatch(fetchUsers())
+    }, [dispatch])
+
     const handleCreate = () => {
-        dispatch(unsetUser())
+        dispatch(unFetchUser())
         navigate('create');
     };
 
     const handleEdit = (user) => {
-        dispatch(setUser(user))
+        dispatch(fetchUser(user))
         navigate('create')
     }
 
@@ -89,7 +94,7 @@ export default function Users() {
                                         <Td><ButtonRefund>Refund</ButtonRefund></Td>
                                         <Td>
                                             <FaRegEdit size={30} cursor={'pointer'} onClick={() => handleEdit(user)} />
-                                            <MdDeleteOutline size={30} style={{ cursor: 'pointer' }} onClick={() => dispatch(removeUser(user.id))}
+                                            <MdDeleteOutline size={30} style={{ cursor: 'pointer' }} onClick={() => dispatch(deleteUser(user.id))}
                                             />
                                         </Td>
                                     </Tr>

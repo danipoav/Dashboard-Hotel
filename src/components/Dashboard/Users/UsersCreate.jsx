@@ -3,6 +3,7 @@ import { Container, Content, Title, CreateForm, Label, Input, SubmitButton } fro
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, editUser, unsetUser } from "../../../store/slices/userSlice";
+import { unFetchUser, updatedUser, createUser } from "../../../store/thunk/userThunk";
 
 export default function UsersCreate() {
 
@@ -41,17 +42,16 @@ export default function UsersCreate() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (user) {
-            console.log(data)
-            dispatch(editUser(data));
+            dispatch(updatedUser(data));
         } else {
-            dispatch(addUser(data));
+            dispatch(createUser(data));
         }
         navigate('/home/users');
     }
 
     const handleCancel = () => {
         if (user != null) {
-            dispatch(unsetUser())
+            dispatch(unFetchUser())
         }
         navigate('/home/users')
     }
