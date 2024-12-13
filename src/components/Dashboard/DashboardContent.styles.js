@@ -45,7 +45,7 @@ export const ContainerText = styled.div`
 export const Text = styled.p`
     color: #4E4E4E;
     font: normal normal normal 16px/28px Poppins;
-    font-size: 20px;
+    font-size: 1em;
 `
 
 export const ContainerPerson = styled.div`

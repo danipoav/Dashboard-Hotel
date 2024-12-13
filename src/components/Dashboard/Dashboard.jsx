@@ -66,7 +66,8 @@ export const Dashboard = () => {
                         <IoPersonOutline />Users
                     </MenuItem>
                     <MenuItem
-                        isActive={location.pathname === '/home/contact'}
+                        isActive={location.pathname === '/home/contacts'}
+                        onClick={() => navigate('/home/contacts')}
                     >
                         <BsTelephone />Contact
                     </MenuItem>

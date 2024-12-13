@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { Container, Content, Title, CreateForm, Label, Input, SubmitButton } from "./UsersCreate.styles"
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
-import { addUser, editUser, unsetUser } from "../../../store/slices/userSlice";
 import { unFetchUser, updatedUser, createUser } from "../../../store/thunk/userThunk";
 
 export default function UsersCreate() {

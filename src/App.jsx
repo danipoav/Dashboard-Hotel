@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Form } from './components/Login/Login';
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard/Dashboard';
@@ -12,6 +11,7 @@ import RoomCreate from './components/Dashboard/Room/RoomCreate';
 import UsersDetails from './components/Dashboard/Users/UsersDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from './store/slices/authSlice';
+import Contact from './components/Dashboard/Contact/Contact';
 
 function App() {
 
@@ -38,11 +38,18 @@ function App() {
               <Route path='show/:id' element={<RoomDetails />} />
               <Route path='create' element={<RoomCreate />} />
             </Route>
-            <Route path='bookings' element={<Bookings />} />
+
+            <Route path='bookings' element={<Bookings />} >
+
+            </Route>
 
             <Route path='users' element={<Users />}>
               <Route path='create' element={<UsersCreate />} />
               <Route path='show/:id' element={<UsersDetails />} />
+            </Route>
+
+            <Route path='contacts' element={<Contact />}>
+
             </Route>
 
           </Route>
