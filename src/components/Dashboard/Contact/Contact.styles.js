@@ -46,6 +46,12 @@ export const Text = styled.p`
     font-size: 0.8em;
 `
 
+export const TextStatus = styled.p`
+    color: ${({ status }) => (status === 'active' ? '#5AD07A' : '#E23428')};
+    width: 150px;
+    font-size: 0.8em;
+`
+
 export const ButtonNotes = styled.button`
     border: none;
     background-color: #EEF9F2;
@@ -90,14 +96,14 @@ export const Tr = styled.tr`
 
 export const Th = styled.th`
 text-align:left;
-padding: 20px;
+padding: 20px 10px;
 border-bottom: 1px solid black;
 `
 
 export const Td = styled.td`
     padding:10px;
     border-bottom: 1px solid #9E9E9E;
-    text-align: center;
+    text-align: left;
 `
 
 export const TdGuest = styled.td`

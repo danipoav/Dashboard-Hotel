@@ -12,6 +12,7 @@ import UsersDetails from './components/Dashboard/Users/UsersDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from './store/slices/authSlice';
 import Contact from './components/Dashboard/Contact/Contact';
+import ContactCreate from './components/Dashboard/Contact/ContactCreate';
 
 function App() {
 
@@ -49,7 +50,7 @@ function App() {
             </Route>
 
             <Route path='contacts' element={<Contact />}>
-
+              <Route path='create' element={<ContactCreate />} />
             </Route>
 
           </Route>

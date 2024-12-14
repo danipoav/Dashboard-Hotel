@@ -47,7 +47,7 @@ export default function Room() {
           <Content>
             <table style={{ borderCollapse: 'collapse', width: '100%' }}>
               <thead>
-                <tr>
+                <tr style={{borderBottom:'1px solid black'}}>
                   <Th>Room</Th>
                   <Th>Bed Type</Th>
                   <Th>Room Floor</Th>

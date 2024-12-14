@@ -107,7 +107,7 @@ padding-bottom: 20px;
 `
 
 export const Th = styled.th`
-    padding: 10px;
+    padding: 20px 10px;
     font-size: 1.1em;
 `
 

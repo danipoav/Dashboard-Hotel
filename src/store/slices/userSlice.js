@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { guest } from "../../data/guest";
 import { createUser, deleteUser, fetchUser, fetchUsers, unFetchUser, updatedUser } from "../thunk/userThunk";
 
 export const userSlice = createSlice({

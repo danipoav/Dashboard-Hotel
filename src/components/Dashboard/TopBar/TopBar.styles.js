@@ -49,5 +49,4 @@ export const TitleTop = styled.h1`
   font-weight: bold;
   margin: 0;
   color: #262626;
-  font: normal normal 600 28px/42px Poppins;
 `;

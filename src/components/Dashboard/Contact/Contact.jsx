@@ -1,4 +1,4 @@
-import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonRefund, ButtonCreate, Th, Tr, Td, Ul, Li } from './Contact.styles';
+import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonRefund, ButtonCreate, Th, Tr, Td, Ul, Li, TextStatus } from './Contact.styles';
 import { MdAddCircleOutline, MdDeleteOutline } from "react-icons/md";
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -21,7 +21,6 @@ export default function Contact() {
     }, [dispatch])
 
     const handleCreate = () => {
-        dispatch(unFetchUser())
         navigate('create');
     };
 
@@ -59,8 +58,8 @@ export default function Contact() {
                                     <Th>Job Desk</Th>
                                     <Th>Schedule</Th>
                                     <Th>Contact</Th>
-                                    <Th style={{ textAlign: 'center' }}>Status</Th>
-                                    <Th style={{ textAlign: 'center' }}>Actions</Th>
+                                    <Th>Status</Th>
+                                    <Th>Actions</Th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,13 +75,13 @@ export default function Contact() {
                                                 </div>
                                             </div>
                                         </Td>
-                                        <Td><Text style={{ textAlign: 'left' }}>{contact.job_desc}</Text></Td>
+                                        <Td><Text style={{ width: '350px' }}>{contact.job_desc}</Text></Td>
                                         <Td>
-                                            <Text style={{ textAlign: 'left' }}>{contact.days[0]},{contact.days[1]}</Text>
-                                            <ID style={{ textAlign: 'left' }}>Check schedule</ID>
+                                            <Text >{contact.days[0]},{contact.days[1]}</Text>
+                                            <ID>Check schedule</ID>
                                         </Td>
                                         <Td><Text>{contact.phone}</Text></Td>
-                                        <Td><Text>{contact.status}</Text></Td>
+                                        <Td><TextStatus status={contact.status} style={{ textTransform: 'uppercase' }}>{contact.status}</TextStatus></Td>
                                         <Td>
                                             <FaRegEdit size={30} cursor={'pointer'} onClick={() => handleEdit(user)} />
                                             <MdDeleteOutline size={30} style={{ cursor: 'pointer' }} onClick={() => dispatch(deleteUser(user.id))}
