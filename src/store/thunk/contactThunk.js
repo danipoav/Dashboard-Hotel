@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fecthContact = createAsyncThunk('contacts/fetchContacts', async () => {
+export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async () => {
     return JSON.parse(localStorage.getItem('contacts')) || []
 })
 
