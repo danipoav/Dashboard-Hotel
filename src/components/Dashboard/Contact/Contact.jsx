@@ -2,39 +2,38 @@ import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonR
 import { MdAddCircleOutline, MdDeleteOutline } from "react-icons/md";
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { unFetchUser, fetchUser, deleteUser, fetchUsers } from '../../../store/thunk/userThunk';
+import { unFetchContact, fetchContacts, deleteContact, fetchContact } from '../../../store/thunk/contactThunk'
 import { useDispatch } from 'react-redux';
 import { FaRegEdit } from "react-icons/fa";
 import { useEffect } from 'react';
-import { contact } from '../../../data/contac';
 
 
 export default function Contact() {
 
     const dispatch = useDispatch()
-    const users = useSelector((state) => state.users.users)
+    const contacts = useSelector((state) => state.contacts.contacts);
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
-        dispatch(fetchUsers())
+        dispatch(fetchContacts())
     }, [dispatch])
 
     const handleCreate = () => {
+        unFetchContact()
         navigate('create');
     };
 
-    const handleEdit = (user) => {
-        dispatch(fetchUser(user))
+    const handleEdit = (contact) => {
+        dispatch(fetchContact(contact))
         navigate('create')
     }
 
-    const handleShow = (user) => {
-        console.log('aaaa')
-        navigate(`show/${user.id}`, { state: { user } })
+    const handleShow = (contact) => {
+        navigate(`show/${contact.id}`, { state: { contact } })
     }
 
-    const contacts = contact;
+
 
 
     return (
@@ -46,7 +45,7 @@ export default function Contact() {
                         New Employee <MdAddCircleOutline size={20} />
                     </ButtonCreate>
                     <Ul>
-                        <Li isActive={true}>All Employee</Li>
+                        <Li active="true">All Employee</Li>
                         <Li>Active Employee</Li>
                         <Li>Inactive Employee</Li>
                     </Ul>
@@ -66,7 +65,7 @@ export default function Contact() {
                                 {contacts.map((contact) => (
                                     <Tr key={contact.id}>
                                         <Td>
-                                            <div onClick={() => handleShow(user)} style={{ display: 'flex', gap: '10px', alignItems: 'center', cursor: 'pointer' }}>
+                                            <div onClick={() => handleShow(contact)} style={{ display: 'flex', gap: '10px', alignItems: 'center', cursor: 'pointer' }}>
                                                 <img src={contact.photo} alt={`Guest ${contact.name}`} style={{ width: '60px', borderRadius: '10px' }} />
                                                 <div style={{ textAlign: 'left' }}>
                                                     <Name>{contact.name}</Name>
@@ -83,8 +82,8 @@ export default function Contact() {
                                         <Td><Text>{contact.phone}</Text></Td>
                                         <Td><TextStatus status={contact.status} style={{ textTransform: 'uppercase' }}>{contact.status}</TextStatus></Td>
                                         <Td>
-                                            <FaRegEdit size={30} cursor={'pointer'} onClick={() => handleEdit(user)} />
-                                            <MdDeleteOutline size={30} style={{ cursor: 'pointer' }} onClick={() => dispatch(deleteUser(user.id))}
+                                            <FaRegEdit size={30} cursor={'pointer'} onClick={() => handleEdit(contact)} />
+                                            <MdDeleteOutline size={30} style={{ cursor: 'pointer' }} onClick={() => dispatch(deleteContact(contact.id))}
                                             />
                                         </Td>
                                     </Tr>

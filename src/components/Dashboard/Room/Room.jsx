@@ -40,7 +40,7 @@ export default function Room() {
             New Room <MdAddCircleOutline size={20} />
           </ButtonCreate>
           <Ul>
-            <Li isActive>All Rooms</Li>
+            <Li active>All Rooms</Li>
             <Li>Active Rooms</Li>
             <Li>Inactive Rooms</Li>
           </Ul>

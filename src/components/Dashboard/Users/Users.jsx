@@ -54,7 +54,7 @@ export default function Users() {
                         <table style={{ borderCollapse: 'collapse', width: '100%' }}>
                             <thead>
                                 <tr>
-                                    <Th>Guest</Th>
+                                    <Th style={{textAlign:'left'}}>Guest</Th>
                                     <Th>Order Date</Th>
                                     <Th>Check In</Th>
                                     <Th>Check Out</Th>

@@ -1,8 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
+import { room } from '../../data/room'
 
 export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async () => {
-    return JSON.parse(localStorage.getItem('rooms')) || []
+    const storedRooms = JSON.parse(localStorage.getItem('rooms')) || []
+    return [...room, ...storedRooms]
 })
 
 export const fetchRoom = createAsyncThunk('rooms/fetchRoom', async (room) => {
@@ -18,7 +20,7 @@ export const createRoom = createAsyncThunk('rooms/createRoom', async (room) => {
     const newRoom = { ...room, id: uuid() }
     const updatedRooms = [...rooms, newRoom]
     localStorage.setItem('rooms', JSON.stringify(updatedRooms))
-    return updatedRooms;
+    return [...room, ...updatedRooms];
 })
 
 export const updatedRoom = createAsyncThunk('rooms/updateRoom', async (room) => {
@@ -29,12 +31,12 @@ export const updatedRoom = createAsyncThunk('rooms/updateRoom', async (room) => 
             : roomMap
     )
     localStorage.setItem('rooms', JSON.stringify(updatedRooms))
-    return updatedRooms
+    return [...room, ...updatedRooms];
 })
 
 export const deleteRoom = createAsyncThunk('rooms/delete', async (id) => {
     const rooms = JSON.parse(localStorage.getItem('rooms'))
     const updatedRooms = rooms.filter((room) => room.id !== id)
     localStorage.setItem('rooms', JSON.stringify(updatedRooms));
-    return updatedRooms
+    return updatedRooms;
 })

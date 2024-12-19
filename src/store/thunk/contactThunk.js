@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { v4 as uuid } from "uuid";
 
 export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async () => {
     return JSON.parse(localStorage.getItem('contacts')) || []

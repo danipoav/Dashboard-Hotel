@@ -2,28 +2,28 @@ import { Container, Content, Title, CreateForm, Label, Input, SubmitButton } fro
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { unFetchRoom, updatedRoom, createRoom } from "../../../store/thunk/roomThunk";
+import { unFetchContact, updatedContact, createContact } from '../../../store/thunk/contactThunk'
 import { useSelector } from "react-redux";
 
 export default function ContactCreate() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const room = useSelector((state) => state.rooms.room)
+    const contact = useSelector((state) => state.contacts.contact)
 
     const [data, setData] = useState({
-        name: "",
+        name: ["Monday", "Sunday"],
         join_date: "",
         job_desc: "",
         phone: "",
         status: "",
-        days: [],
+        days: "",
         photo: ""
     })
 
     useEffect(() => {
-        if (room) {
-            setData(room);
+        if (contact) {
+            setData(contact);
         } else {
             setData({
                 name: "",
@@ -31,30 +31,31 @@ export default function ContactCreate() {
                 job_desc: "",
                 phone: "",
                 status: "",
-                days: [],
+                days: "",
                 photo: ""
             });
         }
-    }, [room]);
+    }, [contact]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setData({ ...data, [name]: value })
+        console.log(data)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (room) {
-            dispatch(updatedRoom(data));
+        if (contact) {
+            dispatch(updatedContact(contact));
         } else {
-            dispatch(createRoom(data));
+            dispatch(createContact(contact));
         }
-        navigate('/home/room');
+        navigate('/home/contact');
     }
 
     const handleCancel = () => {
-        if (room != null) {
-            dispatch(unFetchRoom())
+        if (contact != null) {
+            dispatch(unFetchContact())
             navigate('home/room')
         } else {
             navigate('/home/room')
@@ -66,7 +67,7 @@ export default function ContactCreate() {
             <Container>
                 <Content>
                     <Title>
-                        {room ? 'Edit Room' : 'Create new Room'}
+                        {contact ? 'Edit Room' : 'Create new Room'}
                     </Title>
                     <CreateForm onSubmit={handleSubmit}>
                         <Label>
@@ -96,7 +97,7 @@ export default function ContactCreate() {
                                 name="job_desc"
                                 required
                                 onChange={handleChange}
-                                value={data.room_number}
+                                value={data.job_desc}
                             />
                         </Label>
                         <Label>
@@ -106,7 +107,7 @@ export default function ContactCreate() {
                                 name="join_date"
                                 required
                                 onChange={handleChange}
-                                value={data.bed_type}
+                                value={data.join_date}
                             />
                         </Label>
                         <Label>
@@ -116,7 +117,7 @@ export default function ContactCreate() {
                                 name="phone"
                                 required
                                 onChange={handleChange}
-                                value={data.facilities}
+                                value={data.phone}
                             />
                         </Label>
                         <Label>
@@ -131,7 +132,7 @@ export default function ContactCreate() {
                         </Label>
                         <Label>
                             Days:
-                            <select id="day1" name="days" defaultValue={'Monday'}>
+                            <select id="day1" name="days" defaultValue={'Monday'} onChange={handleChange}>
                                 <option value="Monday" >Monday</option>
                                 <option value="Tuesday">Tuesday</option>
                                 <option value="Wednesday">Wedenesday</option>
@@ -140,7 +141,7 @@ export default function ContactCreate() {
                                 <option value="Saturday">Saturday</option>
                                 <option value="Sunday">Sunday</option>
                             </select>
-                            <select id="day2" name="days" defaultValue={'Sunday'}>
+                            <select id="day2" name="days" defaultValue={'Sunday'} onChange={handleChange}>
                                 <option value="Monday">Monday</option>
                                 <option value="Tuesday">Tuesday</option>
                                 <option value="Wednesday">Wedenesday</option>
@@ -151,7 +152,7 @@ export default function ContactCreate() {
                             </select>
                         </Label>
                         <SubmitButton onClick={handleCancel} style={{ backgroundColor: 'red' }}>Cancel</SubmitButton>
-                        <SubmitButton type="submit">{room ? 'Edit' : 'Create'}</SubmitButton>
+                        <SubmitButton type="submit">{contact ? 'Edit' : 'Create'}</SubmitButton>
                     </CreateForm>
                 </Content>
             </Container>

@@ -11,6 +11,7 @@ export const roomSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchRooms.fulfilled, (state, action) => {
+                localStorage.setItem('rooms', JSON.stringify(state.rooms))
                 state.rooms = action.payload;
             })
             .addCase(fetchRoom.fulfilled, (state, action) => {

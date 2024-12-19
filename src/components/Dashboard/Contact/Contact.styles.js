@@ -128,11 +128,11 @@ export const Ul = styled.ul`
 export const Li = styled.li`
     padding: 10px 20px;
     cursor: pointer;
-    color: ${({ isActive }) => (isActive ? '#135846' : '#C5C5C5')};
-    border-bottom: ${({ isActive }) => (isActive ? '2px solid #135846' : '2px solid #C5C5C5')};
+    color: ${({ active }) => (active ? '#135846' : '#C5C5C5')};
+    border-bottom: ${({ active }) => (active ? '2px solid #135846' : '2px solid #C5C5C5')};
     transition: color 0.3s, border-bottom 0.3s;
 
     &:hover {
-        color: ${({ isActive }) => (isActive ? '#135846' : '#6E6E6E')};
+        color: ${({ active }) => (active ? '#135846' : '#6E6E6E')};
     }
 `
