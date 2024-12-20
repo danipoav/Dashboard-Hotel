@@ -13,7 +13,7 @@ import { updateProfile } from '../../store/slices/authSlice';
 
 export const Dashboard = () => {
     const navigate = useNavigate();
-    const location = useLocation(); // Para obtener la ruta actual
+    const location = useLocation();
     const userProfile = useSelector((state) => state.auth.userProfile);
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
@@ -42,31 +42,31 @@ export const Dashboard = () => {
                         <img src={Logo} alt="logo" style={{ display: 'flex', justifyContent: 'center', width: '90%' }} />
                     </LogoContainer>
                     <MenuItem
-                        isActive={location.pathname === '/home'}
+                        active={location.pathname === '/home'}
                         onClick={() => navigate('/home')}
                     >
                         <MdOutlineSpaceDashboard />Dashboard
                     </MenuItem>
                     <MenuItem
-                        isActive={location.pathname === '/home/room'}
+                        active={location.pathname === '/home/room'}
                         onClick={() => navigate('/home/room')}
                     >
                         <TfiKey />Room
                     </MenuItem>
                     <MenuItem
-                        isActive={location.pathname === '/home/bookings'}
+                        active={location.pathname === '/home/bookings'}
                         onClick={() => navigate('/home/bookings')}
                     >
                         <FaRegCalendarCheck />Bookings
                     </MenuItem>
                     <MenuItem
-                        isActive={location.pathname === '/home/users'}
+                        active={location.pathname === '/home/users'}
                         onClick={() => navigate('/home/users')}
                     >
                         <IoPersonOutline />Users
                     </MenuItem>
                     <MenuItem
-                        isActive={location.pathname === '/home/contacts'}
+                        active={location.pathname === '/home/contacts'}
                         onClick={() => navigate('/home/contacts')}
                     >
                         <BsTelephone />Contact

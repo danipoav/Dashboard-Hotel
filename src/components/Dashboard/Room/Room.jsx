@@ -24,7 +24,7 @@ export default function Room() {
 
   const handleEdit = (room) => {
     dispatch(fetchRoom(room));
-    navigate('create');
+    navigate('edit');
   };
 
   const handleShow = (room) => {

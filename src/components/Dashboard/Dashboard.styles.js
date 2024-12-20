@@ -18,14 +18,14 @@ cursor: pointer;
 color: #799283;
 font-family: "Poppins", sans-serif;
 font-weight: 300;
-color: ${({ isActive }) => (isActive ? 'red' : 'black')};
-border-left: ${({ isActive }) => (isActive ? '4px solid red' : 'none')};
-background-color: ${({ isActive }) => (isActive ? '#f9f9f9' : 'transparent')};
+color: ${({ active }) => (active ? 'red' : 'black')};
+border-left: ${({ active }) => (active ? '4px solid red' : 'none')};
+background-color: ${({ active }) => (active ? '#f9f9f9' : 'transparent')};
 
   svg {
     margin-right: 20px;
     font-size: 1.5em;
-    color: ${({isActive}) => (isActive ? 'red' : '#135846')}
+    color: ${({active}) => (active ? 'red' : '#135846')}
   }
 
   &:hover {

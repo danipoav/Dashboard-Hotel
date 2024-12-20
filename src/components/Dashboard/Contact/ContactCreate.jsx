@@ -12,12 +12,12 @@ export default function ContactCreate() {
     const contact = useSelector((state) => state.contacts.contact)
 
     const [data, setData] = useState({
-        name: ["Monday", "Sunday"],
+        name: "",
         join_date: "",
         job_desc: "",
         phone: "",
         status: "",
-        days: "",
+        days: ["Monday", "Sunday"],
         photo: ""
     })
 
@@ -31,7 +31,7 @@ export default function ContactCreate() {
                 job_desc: "",
                 phone: "",
                 status: "",
-                days: "",
+                days: ["Monday", "Sunday"],
                 photo: ""
             });
         }
@@ -39,26 +39,33 @@ export default function ContactCreate() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setData({ ...data, [name]: value })
-        console.log(data)
+
+        if (name === 'day1' || name === 'day2') {
+            const index = name === 'day1' ? 0 : 1
+            const updatedDays = [...data.days]
+            updatedDays[index] = value;
+            setData({ ...data, days: updatedDays })
+        } else {
+            setData({ ...data, [name]: value })
+        }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (contact) {
-            dispatch(updatedContact(contact));
+            dispatch(updatedContact(data));
         } else {
-            dispatch(createContact(contact));
+            dispatch(createContact(data));
         }
-        navigate('/home/contact');
+        navigate('/home/contacts');
     }
 
     const handleCancel = () => {
         if (contact != null) {
             dispatch(unFetchContact())
-            navigate('home/room')
+            navigate('home/contacts')
         } else {
-            navigate('/home/room')
+            navigate('/home/contacts')
         }
     }
 
@@ -132,19 +139,19 @@ export default function ContactCreate() {
                         </Label>
                         <Label>
                             Days:
-                            <select id="day1" name="days" defaultValue={'Monday'} onChange={handleChange}>
+                            <select id="day1" name="day1" value={data.days[0]} onChange={handleChange}>
                                 <option value="Monday" >Monday</option>
                                 <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wedenesday</option>
+                                <option value="Wednesday">Wednesday</option>
                                 <option value="Thursday">Thursday</option>
                                 <option value="Friday">Friday</option>
                                 <option value="Saturday">Saturday</option>
                                 <option value="Sunday">Sunday</option>
                             </select>
-                            <select id="day2" name="days" defaultValue={'Sunday'} onChange={handleChange}>
+                            <select id="day2" name="day2" value={data.days[1]} onChange={handleChange}>
                                 <option value="Monday">Monday</option>
                                 <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wedenesday</option>
+                                <option value="Wednesday">Wednesday</option>
                                 <option value="Thursday">Thursday</option>
                                 <option value="Friday">Friday</option>
                                 <option value="Saturday">Saturday</option>

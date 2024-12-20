@@ -3,8 +3,13 @@ import { v4 as uuid } from "uuid";
 import { room } from '../../data/room'
 
 export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async () => {
-    const storedRooms = JSON.parse(localStorage.getItem('rooms')) || []
-    return [...room, ...storedRooms]
+    const local = JSON.parse(localStorage.getItem('rooms'));
+    if (local) {
+        return local
+    } else {
+        localStorage.setItem('rooms', JSON.stringify(room))
+        return room
+    }
 })
 
 export const fetchRoom = createAsyncThunk('rooms/fetchRoom', async (room) => {
@@ -20,7 +25,7 @@ export const createRoom = createAsyncThunk('rooms/createRoom', async (room) => {
     const newRoom = { ...room, id: uuid() }
     const updatedRooms = [...rooms, newRoom]
     localStorage.setItem('rooms', JSON.stringify(updatedRooms))
-    return [...room, ...updatedRooms];
+    return updatedRooms;
 })
 
 export const updatedRoom = createAsyncThunk('rooms/updateRoom', async (room) => {
@@ -31,7 +36,7 @@ export const updatedRoom = createAsyncThunk('rooms/updateRoom', async (room) => 
             : roomMap
     )
     localStorage.setItem('rooms', JSON.stringify(updatedRooms))
-    return [...room, ...updatedRooms];
+    return updatedRooms;
 })
 
 export const deleteRoom = createAsyncThunk('rooms/delete', async (id) => {

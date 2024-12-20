@@ -1,8 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
+import { guest } from '../../data/guest'
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-    return JSON.parse(localStorage.getItem('users')) || []
+    const local = JSON.parse(localStorage.getItem('users'));
+    if (local) {
+        return local
+    } else {
+        localStorage.setItem('users', JSON.stringify(guest))
+        return guest
+    }
 })
 
 export const fetchUser = createAsyncThunk('users/fetchUser', async (user) => {

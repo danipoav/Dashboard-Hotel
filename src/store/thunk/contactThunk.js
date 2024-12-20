@@ -1,8 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
+import { contact } from '../../data/contact'
 
 export const fetchContacts = createAsyncThunk('contacts/fetchContacts', async () => {
-    return JSON.parse(localStorage.getItem('contacts')) || []
+    const local = JSON.parse((localStorage.getItem('contacts')))
+    if (local) {
+        return local;
+    } else {
+        localStorage.setItem('contacts', JSON.stringify(contact))
+        return contact
+    }
 })
 
 export const fetchContact = createAsyncThunk('contacts/fetchContact', async (contact) => {
@@ -12,12 +19,15 @@ export const fetchContact = createAsyncThunk('contacts/fetchContact', async (con
 export const unFetchContact = createAsyncThunk('contacts/unFetchContact', async () => {
     return null
 })
+
 export const createContact = createAsyncThunk('contacts/createContact', async (contact) => {
+    console.log('Hola')
     const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
     const newContacts = { ...contact, id: uuid() }
-    const updatedContacs = [...contacts, newContacts]
-    localStorage.setItem('contacts', JSON.stringify(updatedContacs))
-    return updatedContacs;
+    const updatedContacts = [...contacts, newContacts]
+    console.log(newContacts, updatedContacts)
+    localStorage.setItem('contacts', JSON.stringify(updatedContacts))
+    return updatedContacts;
 })
 
 export const updatedContact = createAsyncThunk('contacts/updateContact', async (contact) => {

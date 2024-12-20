@@ -45,7 +45,7 @@ export default function Contact() {
                         New Employee <MdAddCircleOutline size={20} />
                     </ButtonCreate>
                     <Ul>
-                        <Li active="true">All Employee</Li>
+                        <Li active>All Employee</Li>
                         <Li>Active Employee</Li>
                         <Li>Inactive Employee</Li>
                     </Ul>

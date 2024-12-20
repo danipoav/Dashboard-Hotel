@@ -38,6 +38,7 @@ function App() {
             <Route path="room" element={<Room />}>
               <Route path='show/:id' element={<RoomDetails />} />
               <Route path='create' element={<RoomCreate />} />
+              <Route path='edit' element={<RoomCreate />} />
             </Route>
 
             <Route path='bookings' element={<Bookings />} >
