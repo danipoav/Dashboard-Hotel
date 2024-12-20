@@ -21,11 +21,9 @@ export const unFetchContact = createAsyncThunk('contacts/unFetchContact', async 
 })
 
 export const createContact = createAsyncThunk('contacts/createContact', async (contact) => {
-    console.log('Hola')
     const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
     const newContacts = { ...contact, id: uuid() }
     const updatedContacts = [...contacts, newContacts]
-    console.log(newContacts, updatedContacts)
     localStorage.setItem('contacts', JSON.stringify(updatedContacts))
     return updatedContacts;
 })
