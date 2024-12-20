@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from './store/slices/authSlice';
 import Contact from './components/Dashboard/Contact/Contact';
 import ContactCreate from './components/Dashboard/Contact/ContactCreate';
+import BookingForm from './components/Dashboard/Bookings/BookingForm';
 
 function App() {
 
@@ -42,7 +43,8 @@ function App() {
             </Route>
 
             <Route path='bookings' element={<Bookings />} >
-
+              <Route path='create' element={<BookingForm />} />
+              <Route path='edit' element={<BookingForm />} />
             </Route>
 
             <Route path='users' element={<Users />}>

@@ -46,8 +46,9 @@ export const Text = styled.p`
     font-size: 0.8em;
 `
 
-export const TextStatus = styled.p`
-    color: ${({ status }) => (status === 'active' ? '#5AD07A' : '#E23428')};
+export const TextPayment = styled.p`
+    color: ${({ text }) => (text === 'Paid' ? '#5AD07A' : '#E23428' && text === 'Pending' ? '#F4BB44' : '#E23428')};
+    text-transform: uppercase;
     width: 150px;
     font-size: 0.8em;
 `
@@ -62,12 +63,25 @@ export const ButtonNotes = styled.button`
 
 `
 
-export const ButtonRefund = styled.button`
+export const Number = styled.p`
+    color: #393939;
+    width: 100px;
+    font-weight: bold;
+
+    span{
+        color: #799283;
+        font-weight: normal;
+        font-size: 12px;
+    }
+`
+
+export const ButtonStatus = styled.button`
     border: none;
-    background-color: #FFEDEC;
-    color:#E23428 ;
+    background-color: ${({ status }) => (status === 'Confirmed' ? '#EEF9F2' : '#FFEDEC' && status === 'Pending' ? '#FFE5B4' : '#FFEDEC')} ;
+    color:${({ status }) => (status === 'Confirmed' ? '#5AD07A' : '#E23428' && status === 'Pending' ? '#F4BB44' : '#E23428')} ;
     padding: 10px 35px;
     outline: none;
+    text-transform: uppercase;
     border-radius: 10px;
 `
 

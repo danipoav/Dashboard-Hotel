@@ -1,4 +1,4 @@
-import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonRefund, ButtonCreate, Th, Tr, Td, Ul, Li, TextStatus } from "./Bookings-styles"
+import { Container, Content, Name, ID,Number, Text, ButtonCreate, Th, Tr, Td, Ul, Li, TextPayment } from "./Bookings-styles"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { MdAddCircleOutline, MdDeleteOutline } from "react-icons/md";
@@ -42,9 +42,10 @@ export default function Bookings() {
                         New Booking <MdAddCircleOutline size={20} />
                     </ButtonCreate>
                     <Ul>
-                        <Li active>All Employee</Li>
-                        <Li>Active Employee</Li>
-                        <Li>Inactive Employee</Li>
+                        <Li active>All Bookings</Li>
+                        <Li>Confirmed Bookings</Li>
+                        <Li>Pending Bookings</Li>
+                        <Li>Cancelled Bookings</Li>
                     </Ul>
                     <Content>
                         <table style={{ borderCollapse: 'collapse', width: '100%' }}>
@@ -54,8 +55,7 @@ export default function Bookings() {
                                     <Th>Request</Th>
                                     <Th>Check In/Out</Th>
                                     <Th>Room</Th>
-                                    <Th>Total</Th>
-                                    <Th>Payment</Th>
+                                    <Th>Price</Th>
                                     <Th>Status</Th>
                                     <Th>Actions</Th>
                                 </tr>
@@ -76,12 +76,11 @@ export default function Bookings() {
                                         <Td><Text>{booking.requests}</Text></Td>
                                         <Td>
                                             <Text >{booking.check_in}</Text>
-                                            <Text >{booking.check_out}</Text>
+                                            <ID >{booking.check_out}</ID>
                                         </Td>
-                                        <Td><Text>{booking.room}</Text></Td>
-                                        <Td><TextStatus >{booking.total}</TextStatus></Td>
-                                        <Td><Text>{booking.payment}</Text></Td>
-                                        <Td><Text>{booking.status}</Text></Td>
+                                        <Td><Number>{booking.room}</Number></Td>
+                                        <Td><Number >{booking.total} $<span>/TOTAL</span></Number></Td>
+                                        <Td><TextPayment text={booking.status}>{booking.status}</TextPayment></Td>
                                         <Td>
                                             <FaRegEdit size={30} cursor={'pointer'} onClick={() => handleEdit(booking)} />
                                             <MdDeleteOutline size={30} style={{ cursor: 'pointer' }} onClick={() => dispatch(deleteBooking(booking.id))}

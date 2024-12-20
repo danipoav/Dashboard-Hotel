@@ -30,7 +30,7 @@ export const deleteBooking = createAsyncThunk('booking/deleteBooking', async (id
 export const createBooking = createAsyncThunk('bookings/createBooking', async (newBooking) => {
     const bookings = JSON.parse(localStorage.getItem('bookings'));
     const updatedNewBooking = { ...newBooking, id: uuidv4() }
-    const updatedBookings = [...bookings, ...updatedNewBooking]
+    const updatedBookings = [...bookings, updatedNewBooking]
     localStorage.setItem('bookings', JSON.stringify(updatedBookings))
     return updatedBookings
 })
