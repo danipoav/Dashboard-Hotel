@@ -31,7 +31,6 @@ export default function TopBar() {
         }
 
     }
-    console.log(location.pathname)
     return (
         <NotificationBar>
             <LeftSection>
