@@ -42,14 +42,17 @@ export default function Contact() {
     ];
 
     const titles = [
-        { name: 'Name' },
-        { name: 'Job Desk' },
-        { name: 'Schedule' },
-        { name: 'Contact' },
-        { name: 'Status' },
-        { name: 'Actions' },
+        { key: 'job_desc', name: 'Job Desc', width: '350px' },
+        { key: 'days', name: 'Schedule' },
+        { key: 'phone', name: 'Contact' },
+        { key: 'status', name: 'Status' },
     ]
 
+    const actions = {
+        handleEdit: (data) => handleEdit(data),
+        handleDelete: (id) => deleteContact(id),
+        handleShow: (data) => handleShow(data)
+    }
 
 
 
@@ -110,7 +113,7 @@ export default function Contact() {
                 //     </Content>
                 // </Container>
                 <GenericPage title='Contact' onCreate={handleCreate} filters={filters}>
-                    <TableComponent titles={titles} />
+                    <TableComponent titles={titles} datas={contacts} actions={actions} />
                 </GenericPage>
             )}
         </>
