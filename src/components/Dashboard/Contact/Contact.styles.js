@@ -42,7 +42,6 @@ export const ID = styled.p`
 
 export const Text = styled.p`
     color: #393939;
-    width: 150px;
     font-size: 0.8em;
 `
 

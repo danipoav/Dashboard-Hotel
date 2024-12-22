@@ -35,8 +35,8 @@ export default function TableComponent({ titles, datas, actions }) {
                                 </div>
                             </Td>
                             {titles.map((title) => (
-                                <Td key={title.key} style={{ width: title.width || 'auto'}}>
-                                    {data[title.key]}
+                                <Td key={title.key} style={{ width: title.width || 'auto' }}>
+                                    <Text>{data[title.key]}</Text>
                                 </Td>
                             ))}
                             <Td>
