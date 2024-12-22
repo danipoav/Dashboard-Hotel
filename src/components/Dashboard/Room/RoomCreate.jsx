@@ -24,16 +24,6 @@ export default function RoomCreate() {
   useEffect(() => {
     if (room) {
       setData(room);
-    } else {
-      setData({
-        name: "",
-        photo: "",
-        room_number: "",
-        bed_type: "",
-        facilities: "",
-        status: "",
-        price: ""
-      });
     }
   }, [room]);
 

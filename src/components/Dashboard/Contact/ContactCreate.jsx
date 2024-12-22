@@ -24,16 +24,6 @@ export default function ContactCreate() {
     useEffect(() => {
         if (contact) {
             setData(contact);
-        } else {
-            setData({
-                name: "",
-                join_date: "",
-                job_desc: "",
-                phone: "",
-                status: "",
-                days: ["Monday", "Sunday"],
-                photo: ""
-            });
         }
     }, [contact]);
 

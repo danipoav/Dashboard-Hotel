@@ -41,8 +41,13 @@ export const ID = styled.p`
 `;
 
 export const Text = styled.p`
-    color: #393939;
     font-size: 0.8em;
+    ${(props) => {
+        if (props.status === 'active') return `color:#5AD07A;text-transform:uppercase`;
+        if (props.status === 'inactive') return `color:#E23428;text-transform:uppercase`;
+        if (props.status === 'Available') return `background-color:#5AD07A;padding: 10px 25px;border-radius: 10px;color:white;width: 150px;text-transform:uppercase;text-align:center;`;
+        if (props.status === 'Booked') return `background-color:#E23428;padding: 10px 25px;border-radius: 10px;color:white;width: 150px;text-transform:uppercase;text-align:center;`;
+    }};
 `
 
 export const TextStatus = styled.p`

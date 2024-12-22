@@ -27,7 +27,7 @@ export default function TableComponent({ titles, datas, actions }) {
                         <Tr key={data.id}>
                             <Td>
                                 <div onClick={() => actions.handleShow(data)} style={{ display: 'flex', gap: '10px', alignItems: 'center', cursor: 'pointer' }}>
-                                    <img src={data.photo} alt={`Guest ${data.name}`} style={{ width: '60px', borderRadius: '10px' }} />
+                                    <img src={data.photo} alt={`Guest ${data.name}`} style={{height:'70px', width: 'auto', borderRadius: '10px' }} />
                                     <div style={{ textAlign: 'left' }}>
                                         <Name>{data.name}</Name>
                                         <ID style={{ fontSize: '0.4em' }}>#{data.id}</ID>
@@ -36,7 +36,11 @@ export default function TableComponent({ titles, datas, actions }) {
                             </Td>
                             {titles.map((title) => (
                                 <Td key={title.key} style={{ width: title.width || 'auto' }}>
-                                    <Text>{data[title.key]}</Text>
+                                    <Text status={data[title.key]}>
+                                        {Array.isArray(data[title.key])
+                                            ? data[title.key].join(', ')
+                                            : data[title.key]}
+                                    </Text>
                                 </Td>
                             ))}
                             <Td>
