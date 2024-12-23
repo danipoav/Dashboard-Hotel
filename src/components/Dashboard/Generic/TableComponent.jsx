@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonRefund, ButtonCreate, Th, Tr, Td, Ul, Li, TextStatus } from '../Contact/Contact.styles';
+import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonRefund, ButtonCreate, Th, Tr, Td, Ul, Li, TextStatus, TextPrice } from '../Contact/Contact.styles';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch } from 'react-redux';
@@ -27,7 +27,7 @@ export default function TableComponent({ titles, datas, actions }) {
                         <Tr key={data.id}>
                             <Td>
                                 <div onClick={() => actions.handleShow(data)} style={{ display: 'flex', gap: '10px', alignItems: 'center', cursor: 'pointer' }}>
-                                    <img src={data.photo} alt={`Guest ${data.name}`} style={{height:'70px', width: 'auto', borderRadius: '10px' }} />
+                                    <img src={data.photo} alt={`Guest ${data.name}`} style={{ height: '70px', width: 'auto', borderRadius: '10px' }} />
                                     <div style={{ textAlign: 'left' }}>
                                         <Name>{data.name}</Name>
                                         <ID style={{ fontSize: '0.4em' }}>#{data.id}</ID>
@@ -36,11 +36,17 @@ export default function TableComponent({ titles, datas, actions }) {
                             </Td>
                             {titles.map((title) => (
                                 <Td key={title.key} style={{ width: title.width || 'auto' }}>
-                                    <Text status={data[title.key]}>
-                                        {Array.isArray(data[title.key])
-                                            ? data[title.key].join(', ')
-                                            : data[title.key]}
-                                    </Text>
+                                    {Array.isArray(data[title.key])
+                                        ? (<Text>{data[title.key].join(', ')}</Text>)
+                                        : title.key === 'price' ? (
+                                            <>
+                                                <TextPrice>{data[title.key]}$ <span>/night</span></TextPrice>
+                                                
+                                            </>
+                                        ) : (
+                                            <Text status={data[title.key]}>{data[title.key]}</Text>
+                                        )
+                                    }
                                 </Td>
                             ))}
                             <Td>

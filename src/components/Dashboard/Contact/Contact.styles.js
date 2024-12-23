@@ -42,6 +42,7 @@ export const ID = styled.p`
 
 export const Text = styled.p`
     font-size: 0.8em;
+    color: #393939;;
     ${(props) => {
         if (props.status === 'active') return `color:#5AD07A;text-transform:uppercase`;
         if (props.status === 'inactive') return `color:#E23428;text-transform:uppercase`;
@@ -54,6 +55,18 @@ export const TextStatus = styled.p`
     color: ${({ status }) => (status === 'active' ? '#5AD07A' : '#E23428')};
     width: 150px;
     font-size: 0.8em;
+`
+
+export const TextPrice = styled.p`
+    color: #393939;
+    width: 100px;
+    font-weight: bold;
+
+    span{
+        color: #799283;
+        font-weight: normal;
+        font-size: 12px;
+    }
 `
 
 export const ButtonNotes = styled.button`

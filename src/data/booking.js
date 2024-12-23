@@ -9,7 +9,7 @@ export const booking =
             "check_in": "2024-12-21",
             "check_out": "2024-12-25",
             "room": 101,
-            "total": 480,
+            "price": 480,
             "status": "Paid",
             "requests": "Extra pillows",
             "booking_date": "2024-12-15"
@@ -21,7 +21,7 @@ export const booking =
             "check_in": "2024-12-22",
             "check_out": "2024-12-26",
             "room": 102,
-            "total": 600,
+            "price": 600,
             "status": "Pending",
             "requests": "No dairy",
             "booking_date": "2024-12-16"
@@ -33,7 +33,7 @@ export const booking =
             "check_in": "2024-12-23",
             "check_out": "2024-12-27",
             "room": 103,
-            "total": 440,
+            "price": 440,
             "status": "Refunded",
             "requests": "Near elevator",
             "booking_date": "2024-12-17"
@@ -45,7 +45,7 @@ export const booking =
             "check_in": "2024-12-24",
             "check_out": "2024-12-28",
             "room": 104,
-            "total": 520,
+            "price": 520,
             "status": "Paid",
             "requests": "Late check-in",
             "booking_date": "2024-12-18"
@@ -57,7 +57,7 @@ export const booking =
             "check_in": "2024-12-25",
             "check_out": "2024-12-29",
             "room": 105,
-            "total": 560,
+            "price": 560,
             "status": "Pending",
             "requests": "Extra towels",
             "booking_date": "2024-12-19"
@@ -69,7 +69,7 @@ export const booking =
             "check_in": "2024-12-20",
             "check_out": "2024-12-23",
             "room": 106,
-            "total": 300,
+            "price": 300,
             "status": "Paid",
             "requests": "Ocean view",
             "booking_date": "2024-12-14"
@@ -81,7 +81,7 @@ export const booking =
             "check_in": "2024-12-26",
             "check_out": "2024-12-30",
             "room": 107,
-            "total": 500,
+            "price": 500,
             "status": "Pending",
             "requests": "Allergic to nuts",
             "booking_date": "2024-12-20"
@@ -93,7 +93,7 @@ export const booking =
             "check_in": "2024-12-22",
             "check_out": "2024-12-24",
             "room": 108,
-            "total": 180,
+            "price": 180,
             "status": "Refunded",
             "requests": "Ground floor",
             "booking_date": "2024-12-12"
@@ -105,7 +105,7 @@ export const booking =
             "check_in": "2024-12-27",
             "check_out": "2024-12-31",
             "room": 109,
-            "total": 600,
+            "price": 600,
             "status": "Paid",
             "requests": "King-size bed",
             "booking_date": "2024-12-21"
@@ -117,7 +117,7 @@ export const booking =
             "check_in": "2024-12-28",
             "check_out": "2025-01-01",
             "room": 110,
-            "total": 640,
+            "price": 640,
             "status": "Pending",
             "requests": "Early check-in",
             "booking_date": "2024-12-22"

@@ -19,7 +19,7 @@ export default function BookingForm() {
         room: "",
         requests: "",
         booking_date: today,
-        total: "",
+        price: "",
         status: "Paid",
     });
 
@@ -120,10 +120,10 @@ export default function BookingForm() {
                         Total Price:
                         <Input
                             type="number"
-                            name="total"
+                            name="price"
                             required
                             onChange={handleChange}
-                            value={data.total}
+                            value={data.price}
                         />
                     </Label>
                     <Label>

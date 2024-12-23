@@ -79,7 +79,7 @@ export default function Bookings() {
                                             <ID >{booking.check_out}</ID>
                                         </Td>
                                         <Td><Number>{booking.room}</Number></Td>
-                                        <Td><Number >{booking.total} $<span>/TOTAL</span></Number></Td>
+                                        <Td><Number >{booking.price} $<span>/TOTAL</span></Number></Td>
                                         <Td><TextPayment text={booking.status}>{booking.status}</TextPayment></Td>
                                         <Td>
                                             <FaRegEdit size={30} cursor={'pointer'} onClick={() => handleEdit(booking)} />
