@@ -1,10 +1,9 @@
-import { Container, Content, Name, ID,Number, Text, ButtonCreate, Th, Tr, Td, Ul, Li, TextPayment } from "./Bookings-styles"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { MdAddCircleOutline, MdDeleteOutline } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
-import { useLocation, useNavigate,Outlet } from "react-router-dom";
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import { fetchBookings, fetchBooking, deleteBooking, unFetchBooking } from '../../../store/thunk/bookingThunk'
+import GenericPage from "../Generic/GenericPage";
+import TableComponent from "../Generic/TableComponent";
 
 export default function Bookings() {
     const dispatch = useDispatch()
@@ -30,68 +29,36 @@ export default function Bookings() {
         navigate(`show/${booking.id}`, { state: { booking } })
     }
 
+    const filters = [
+        { name: 'All Bookings', active: true },
+        { name: 'Confirmed Bookings', active: false },
+        { name: 'Pending Bookings', active: false },
+        { name: 'Cancelled Bookings', active: false },
+    ]
 
+    const titles = [
+        { key: 'requests', name: 'Request' },
+        { key: 'booking_date', name: 'Booking Date' },
+        { key: 'check_in', name: 'Check In' },
+        { key: 'check_out', name: 'Check Out' },
+        { key: 'room', name: 'Room' },
+        { key: 'price', name: 'Price' },
+        { key: 'status', name: 'Status' },
+    ]
 
+    const actions = {
+        handleEdit: (data) => handleEdit(data),
+        handleDelete: (id) => deleteBooking(id),
+        handleShow: (data) => handleShow(data),
+    }
 
     return (
         <>
             <Outlet />
             {location.pathname === '/home/bookings' && (
-                <Container>
-                    <ButtonCreate onClick={handleCreate}>
-                        New Booking <MdAddCircleOutline size={20} />
-                    </ButtonCreate>
-                    <Ul>
-                        <Li active>All Bookings</Li>
-                        <Li>Confirmed Bookings</Li>
-                        <Li>Pending Bookings</Li>
-                        <Li>Cancelled Bookings</Li>
-                    </Ul>
-                    <Content>
-                        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-                            <thead>
-                                <tr>
-                                    <Th>Name</Th>
-                                    <Th>Request</Th>
-                                    <Th>Check In/Out</Th>
-                                    <Th>Room</Th>
-                                    <Th>Price</Th>
-                                    <Th>Status</Th>
-                                    <Th>Actions</Th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {bookings.map((booking) => (
-                                    <Tr key={booking.id}>
-                                        <Td>
-                                            <div onClick={() => handleShow(booking)} style={{ display: 'flex', gap: '10px', alignItems: 'center', cursor: 'pointer' }}>
-                                                <img src={booking.photo} alt={`Booking ${booking.name}`} style={{ width: '60px', borderRadius: '10px' }} />
-                                                <div style={{ textAlign: 'left' }}>
-                                                    <Name>{booking.name}</Name>
-                                                    <ID style={{ fontSize: '0.4em' }}>#{booking.id}</ID>
-                                                    <ID>{booking.booking_date}</ID>
-                                                </div>
-                                            </div>
-                                        </Td>
-                                        <Td><Text>{booking.requests}</Text></Td>
-                                        <Td>
-                                            <Text >{booking.check_in}</Text>
-                                            <ID >{booking.check_out}</ID>
-                                        </Td>
-                                        <Td><Number>{booking.room}</Number></Td>
-                                        <Td><Number >{booking.price} $<span>/TOTAL</span></Number></Td>
-                                        <Td><TextPayment text={booking.status}>{booking.status}</TextPayment></Td>
-                                        <Td>
-                                            <FaRegEdit size={30} cursor={'pointer'} onClick={() => handleEdit(booking)} />
-                                            <MdDeleteOutline size={30} style={{ cursor: 'pointer' }} onClick={() => dispatch(deleteBooking(booking.id))}
-                                            />
-                                        </Td>
-                                    </Tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </Content>
-                </Container>
+                <GenericPage title={'Booking'} filters={filters}>
+                    <TableComponent titles={titles} datas={bookings} actions={actions} />
+                </GenericPage>
             )}
         </>
     );

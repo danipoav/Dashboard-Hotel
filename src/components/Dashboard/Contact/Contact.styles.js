@@ -48,6 +48,9 @@ export const Text = styled.p`
         if (props.status === 'inactive') return `color:#E23428;text-transform:uppercase`;
         if (props.status === 'Available') return `background-color:#5AD07A;padding: 10px 25px;border-radius: 10px;color:white;width: 150px;text-transform:uppercase;text-align:center;`;
         if (props.status === 'Booked') return `background-color:#E23428;padding: 10px 25px;border-radius: 10px;color:white;width: 150px;text-transform:uppercase;text-align:center;`;
+        if (props.status === 'Paid') return `color:#5AD07A;text-transform:uppercase`;
+        if (props.status === 'Pending') return `color:#F4BB44;text-transform:uppercase`;
+        if (props.status === 'Refunded') return `color:#E23428;text-transform:uppercase`;
     }};
 `
 
