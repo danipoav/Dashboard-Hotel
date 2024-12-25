@@ -56,8 +56,8 @@ export default function Bookings() {
         <>
             <Outlet />
             {location.pathname === '/home/bookings' && (
-                <GenericPage title={'Booking'} filters={filters}>
-                    <TableComponent titles={titles} datas={bookings} actions={actions} />
+                <GenericPage title={'Booking'} filters={filters} onCreate={handleCreate}>
+                    <TableComponent titles={titles} datas={bookings} actions={actions}/>
                 </GenericPage>
             )}
         </>

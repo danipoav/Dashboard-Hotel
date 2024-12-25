@@ -19,15 +19,6 @@ export const Content = styled.div`
     padding: 0 1em;
 `
 
-export const ContainerName = styled.div`
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-right: 2.5em;
-    width: 150px;
-`
-
 export const Name = styled.h3`
     margin: 0;
     font-size: 1em;
@@ -54,12 +45,6 @@ export const Text = styled.p`
     }};
 `
 
-export const TextStatus = styled.p`
-    color: ${({ status }) => (status === 'active' ? '#5AD07A' : '#E23428')};
-    width: 150px;
-    font-size: 0.8em;
-`
-
 export const TextPrice = styled.p`
     color: #393939;
     width: 100px;
@@ -70,25 +55,6 @@ export const TextPrice = styled.p`
         font-weight: normal;
         font-size: 12px;
     }
-`
-
-export const ButtonNotes = styled.button`
-    border: none;
-    background-color: #EEF9F2;
-    color: #212121;
-    padding: 10px 35px;
-    outline: none;
-    border-radius: 10px;
-
-`
-
-export const ButtonRefund = styled.button`
-    border: none;
-    background-color: #FFEDEC;
-    color:#E23428 ;
-    padding: 10px 35px;
-    outline: none;
-    border-radius: 10px;
 `
 
 export const ButtonCreate = styled.button`
@@ -124,16 +90,6 @@ export const Td = styled.td`
     padding:10px;
     border-bottom: 1px solid #9E9E9E;
     text-align: left;
-`
-
-export const TdGuest = styled.td`
-display:flex;
-border-bottom: 1px solid black;
-padding: 10px;
-img{
-    border-radius: 20px;
-    width: 40%;
-}
 `
 
 export const Ul = styled.ul`

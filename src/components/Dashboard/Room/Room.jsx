@@ -1,4 +1,3 @@
-import { Container, Content, CardGuest, ContainerName, Name, ID, ButtonStatus, Price, ButtonCreate, Th, Tr, Td, Ul, Li } from './Room.styles';
 import { MdAddCircleOutline, MdDeleteOutline } from "react-icons/md";
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';

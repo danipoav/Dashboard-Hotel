@@ -1,5 +1,5 @@
 import { MdAddCircleOutline } from "react-icons/md";
-import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonRefund, ButtonCreate, Th, Tr, Td, Ul, Li, TextStatus } from '../Contact/Contact.styles';
+import { Container, Content, ButtonCreate, Ul, Li, } from '../Contact/Contact.styles';
 
 export default function GenericPage({ title, onCreate, filters, children }) {
     return (

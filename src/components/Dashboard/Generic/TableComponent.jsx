@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Content, ContainerName, Name, ID, Text, ButtonNotes, ButtonRefund, ButtonCreate, Th, Tr, Td, Ul, Li, TextStatus, TextPrice } from '../Contact/Contact.styles';
+import { Name, ID, Text, Th, Tr, Td, TextPrice } from '../Contact/Contact.styles';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch } from 'react-redux';
@@ -41,7 +41,7 @@ export default function TableComponent({ titles, datas, actions }) {
                                         : title.key === 'price' ? (
                                             <>
                                                 <TextPrice>{data[title.key]}$ <span>/night</span></TextPrice>
-                                                
+
                                             </>
                                         ) : (
                                             <Text status={data[title.key]}>{data[title.key]}</Text>
