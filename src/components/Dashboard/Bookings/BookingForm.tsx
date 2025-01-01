@@ -1,17 +1,40 @@
-import React from 'react'
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { unFetchBooking, createBooking, editBooking } from '../../../store/thunk/bookingThunk'
-import { Container, Content, Title, CreateForm, Label, Input, SubmitButton } from "./BookingForm.styles"
-import { useState, useEffect } from 'react';
+import { unFetchBooking, createBooking, editBooking } from '../../../store/thunk/bookingThunk';
+import { Container, Content, Title, CreateForm, Label, Input, SubmitButton } from "./BookingForm.styles";
+import { AppDispatch } from '../../../store/store';
+
+interface BookingData {
+    name: string;
+    photo: string;
+    check_in: string;
+    check_out: string;
+    room: string;
+    requests: string;
+    booking_date: string;
+    price: number;
+    status: 'Paid' | 'Refunded' | 'Pending';
+}
+
+interface Booking extends BookingData {
+    id: string;
+}
+
+interface RootState {
+    bookings: {
+        booking: Booking | null;
+    };
+}
+
 
 export default function BookingForm() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const booking = useSelector((state) => state.bookings.booking);
+    const dispatch = useDispatch<AppDispatch>();
+    const booking = useSelector((state: RootState) => state.bookings.booking);
     const today = new Date().toISOString().split('T')[0];
 
-    const [data, setData] = useState({
+    const [data, setData] = useState<BookingData>({
         name: "",
         photo: "",
         check_in: "",
@@ -19,7 +42,7 @@ export default function BookingForm() {
         room: "",
         requests: "",
         booking_date: today,
-        price: "",
+        price: 0,
         status: "Paid",
     });
 
@@ -27,22 +50,24 @@ export default function BookingForm() {
         if (booking) {
             setData({ ...booking, booking_date: booking.booking_date || today });
         }
-    }, [booking]);
+    }, [booking, today]);
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setData({ ...data, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (booking) {
-            dispatch(editBooking(data));
+            const updatedBooking: Booking = { ...data, id: booking.id };
+            dispatch(editBooking(updatedBooking));
         } else {
             dispatch(createBooking(data));
         }
         navigate('/home/bookings');
     };
+    
 
     const handleCancel = () => {
         if (booking != null) {
@@ -148,4 +173,3 @@ export default function BookingForm() {
         </Container>
     );
 }
-
