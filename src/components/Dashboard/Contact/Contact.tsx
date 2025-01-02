@@ -5,12 +5,26 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import GenericPage from '../Generic/GenericPage';
 import TableComponent from '../Generic/TableComponent';
+import { AppDispatch, RootState } from '../../../store/store';
+import React from 'react';
 
+type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
+
+interface Contact {
+    name: string;
+    id: string;
+    join_date: string;
+    job_desc: string;
+    phone: string;
+    status: "active" | "inactive";
+    days: Day[];
+    photo: string;
+}
 
 export default function Contact() {
 
-    const dispatch = useDispatch()
-    const contacts = useSelector((state) => state.contacts.contacts);
+    const dispatch = useDispatch<AppDispatch>()
+    const contacts = useSelector((state: RootState) => state.contacts.contacts);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -23,12 +37,12 @@ export default function Contact() {
         navigate('create');
     };
 
-    const handleEdit = (contact) => {
+    const handleEdit = (contact: Contact) => {
         dispatch(fetchContact(contact))
         navigate('create')
     }
 
-    const handleShow = (contact) => {
+    const handleShow = (contact: Contact) => {
         navigate(`show/${contact.id}`, { state: { contact } })
     }
 
@@ -46,9 +60,9 @@ export default function Contact() {
     ]
 
     const actions = {
-        handleEdit: (data) => handleEdit(data),
-        handleDelete: (id) => deleteContact(id),
-        handleShow: (data) => handleShow(data)
+        handleEdit: (data: Contact) => handleEdit(data),
+        handleDelete: (id: string) => deleteContact(id),
+        handleShow: (data: Contact) => handleShow(data)
     }
 
 
