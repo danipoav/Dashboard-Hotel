@@ -1,45 +1,35 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 import { contact as initialContacts } from '../../data/contact';
+import { ContactType, ContactTypeID } from "../../types/ContactType";
 
-type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
-
-export interface Contact {
-  name: string;
-    id: string;
-    join_date: string;
-    job_desc: string;
-    phone: string;
-    status: "active" | "inactive";
-    days: Day[];
-    photo: string;
-}
-
-export const fetchContacts = createAsyncThunk<Contact[]>(
+export const fetchContacts = createAsyncThunk<ContactTypeID[]>(
   'contacts/fetchContacts',
   async () => {
-  const local = localStorage.getItem('contacts');
-  const contacts = local ? JSON.parse(local) as Contact[] : null;
+    const local = localStorage.getItem('contacts');
+    const contacts = local ? JSON.parse(local) as ContactTypeID[] : null;
 
-  if (contacts) {
-    return contacts;
-  } else {
-    localStorage.setItem('contacts', JSON.stringify(initialContacts));
-    return initialContacts;
-  }
-});
+    if (contacts) {
+      return contacts;
+    } else {
+      localStorage.setItem('contacts', JSON.stringify(initialContacts));
+      return initialContacts;
+    }
+  });
 
-export const fetchContact = createAsyncThunk<Contact, Contact>(
+export const fetchContact = createAsyncThunk<ContactTypeID, ContactTypeID>(
   'contacts/fetchContact',
-  async (contact) => contact
+  async (contact) =>{
+    return contact;
+  }
 );
 
 export const unFetchContact = createAsyncThunk<null>('contacts/unFetchContact', async () => null);
 
-export const createContact = createAsyncThunk<Contact[], Omit<Contact, 'id'>>(
+export const createContact = createAsyncThunk<ContactTypeID[], Omit<ContactType, 'id'>>(
   'contacts/createContact',
   async (contact) => {
-    const contacts = JSON.parse(localStorage.getItem('contacts') || '[]') as Contact[];
+    const contacts = JSON.parse(localStorage.getItem('contacts') || '[]') as ContactTypeID[];
     const newContact = { ...contact, id: uuid() };
     const updatedContacts = [...contacts, newContact];
     localStorage.setItem('contacts', JSON.stringify(updatedContacts));
@@ -47,10 +37,10 @@ export const createContact = createAsyncThunk<Contact[], Omit<Contact, 'id'>>(
   }
 );
 
-export const updatedContact = createAsyncThunk<Contact[], Contact>(
+export const updatedContact = createAsyncThunk<ContactTypeID[], ContactTypeID>(
   'contacts/updateContact',
   async (contact) => {
-    const contacts = JSON.parse(localStorage.getItem('contacts') || '[]') as Contact[];
+    const contacts: ContactTypeID[] = JSON.parse(localStorage.getItem('contacts') || '[]');
     const updatedContacts = contacts.map((existingContact) =>
       existingContact.id === contact.id
         ? { ...existingContact, ...contact }
@@ -61,10 +51,10 @@ export const updatedContact = createAsyncThunk<Contact[], Contact>(
   }
 );
 
-export const deleteContact = createAsyncThunk<Contact[], string>(
+export const deleteContact = createAsyncThunk<ContactTypeID[], string>(
   'contacts/delete',
   async (id) => {
-    const contacts = JSON.parse(localStorage.getItem('contacts') || '[]') as Contact[];
+    const contacts = JSON.parse(localStorage.getItem('contacts') || '[]') as ContactTypeID[];
     const updatedContacts = contacts.filter((contact) => contact.id !== id);
     localStorage.setItem('contacts', JSON.stringify(updatedContacts));
     return updatedContacts;

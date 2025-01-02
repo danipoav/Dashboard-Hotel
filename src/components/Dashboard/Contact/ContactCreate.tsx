@@ -4,14 +4,24 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { unFetchContact, updatedContact, createContact } from '../../../store/thunk/contactThunk'
 import { useSelector } from "react-redux";
+import { AppDispatch } from "../../../store/store";
+import { ContactType, ContactTypeID, Day } from "../../../types/ContactType";
+import { ChangeEvent, FormEvent } from "react";
+import React from "react";
+
+interface RootState {
+    contacts: {
+        contact: ContactTypeID | null;
+    };
+}
 
 export default function ContactCreate() {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const contact = useSelector((state) => state.contacts.contact)
+    const dispatch = useDispatch<AppDispatch>();
+    const contact = useSelector((state: RootState) => state.contacts.contact)
 
-    const [data, setData] = useState({
+    const [data, setData] = useState<ContactType>({
         name: "",
         join_date: "",
         job_desc: "",
@@ -27,23 +37,25 @@ export default function ContactCreate() {
         }
     }, [contact]);
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
 
         if (name === 'day1' || name === 'day2') {
-            const index = name === 'day1' ? 0 : 1
-            const updatedDays = [...data.days]
-            updatedDays[index] = value;
-            setData({ ...data, days: updatedDays })
+            const index = name === 'day1' ? 0 : 1;
+            const updatedDays = [...data.days];
+            updatedDays[index] = value as Day;
+            setData({ ...data, days: updatedDays });
         } else {
-            setData({ ...data, [name]: value })
+            setData({ ...data, [name]: value });
         }
-    }
+    };
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (contact) {
-            dispatch(updatedContact(data));
+            const updatedData: ContactTypeID = { ...data, id: contact.id };
+            dispatch(updatedContact(updatedData));
         } else {
             dispatch(createContact(data));
         }

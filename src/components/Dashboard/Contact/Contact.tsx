@@ -6,20 +6,8 @@ import { useEffect } from 'react';
 import GenericPage from '../Generic/GenericPage';
 import TableComponent from '../Generic/TableComponent';
 import { AppDispatch, RootState } from '../../../store/store';
+import { ContactTypeID } from '../../../types/ContactType';
 import React from 'react';
-
-type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
-
-interface Contact {
-    name: string;
-    id: string;
-    join_date: string;
-    job_desc: string;
-    phone: string;
-    status: "active" | "inactive";
-    days: Day[];
-    photo: string;
-}
 
 export default function Contact() {
 
@@ -37,12 +25,12 @@ export default function Contact() {
         navigate('create');
     };
 
-    const handleEdit = (contact: Contact) => {
+    const handleEdit = (contact: ContactTypeID) => {
         dispatch(fetchContact(contact))
         navigate('create')
     }
 
-    const handleShow = (contact: Contact) => {
+    const handleShow = (contact: ContactTypeID) => {
         navigate(`show/${contact.id}`, { state: { contact } })
     }
 
@@ -60,9 +48,9 @@ export default function Contact() {
     ]
 
     const actions = {
-        handleEdit: (data: Contact) => handleEdit(data),
+        handleEdit: (data: ContactTypeID) => handleEdit(data),
         handleDelete: (id: string) => deleteContact(id),
-        handleShow: (data: Contact) => handleShow(data)
+        handleShow: (data: ContactTypeID) => handleShow(data)
     }
 
 

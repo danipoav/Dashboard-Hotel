@@ -1,19 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
+import { ContactTypeID } from "../types/ContactType";
 
-type Day = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
-
-interface Contact {
-    name: string;
-    id: string;
-    join_date: string;
-    job_desc: string;
-    phone: string;
-    status: "active" | "inactive";
-    days: Day[];
-    photo: string;
-}
-
-export const contact: Contact[] = [
+export const contact: ContactTypeID[] = [
     {
         name: "John Doe",
         id: uuidv4(),
