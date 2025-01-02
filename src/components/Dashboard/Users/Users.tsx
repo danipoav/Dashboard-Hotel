@@ -1,37 +1,37 @@
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { unFetchUser, fetchUser, deleteUser, fetchUsers } from '../../../store/thunk/userThunk';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { unFetchUser, fetchUser, deleteUser, fetchUsers } from '../../../store/thunk/userThunk';
 import GenericPage from '../Generic/GenericPage';
 import TableComponent from '../Generic/TableComponent';
-
+import { RootState, AppDispatch } from '../../../store/store';
+import { UserTypeID } from '../../../types/UserType';
+import React from 'react';
 
 export default function Users() {
-
-    const dispatch = useDispatch()
-    const users = useSelector((state) => state.users.users)
+    const dispatch = useDispatch<AppDispatch>();
+    const users = useSelector((state: RootState) => state.users.users);
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
-        dispatch(fetchUsers())
-    }, [dispatch])
+        dispatch(fetchUsers());
+    }, [dispatch]);
 
     const handleCreate = () => {
-        dispatch(unFetchUser())
+        dispatch(unFetchUser());
         navigate('create');
     };
 
-    const handleEdit = (user) => {
-        dispatch(fetchUser(user))
-        navigate('create')
-    }
+    const handleEdit = (user: UserTypeID) => {
+        dispatch(fetchUser(user));
+        navigate('create');
+    };
 
-    const handleShow = (user) => {
-        console.log('aaaa')
-        navigate(`show/${user.id}`, { state: { user } })
-    }
+    const handleShow = (user: UserTypeID) => {
+        console.log('aaaa');
+        navigate(`show/${user.id}`, { state: { user } });
+    };
 
     const filters = [
         { name: 'All Users', active: true },
@@ -39,7 +39,7 @@ export default function Users() {
         { name: 'Booked Users', active: false },
         { name: 'Canceled Users', active: false },
         { name: 'Refund Users', active: false },
-    ]
+    ];
 
     const titles = [
         { key: 'order_date', name: 'Order Date' },
@@ -47,20 +47,19 @@ export default function Users() {
         { key: 'check_out', name: 'Check Out' },
         { key: 'room_type', name: 'Room Type' },
         { key: 'status', name: 'Status' },
-    ]
+    ];
 
     const actions = {
-        handleEdit: (data) => handleEdit(data),
-        handleDelete: (id) => deleteUser(id),
-        handleShow: (data) => handleShow(data),
-    }
-
+        handleEdit: (data: UserTypeID) => handleEdit(data),
+        handleDelete: (id: string) => deleteUser(id),
+        handleShow: (data: UserTypeID) => handleShow(data),
+    };
 
     return (
         <>
             <Outlet />
             {location.pathname === '/home/users' && (
-                <GenericPage handleCreate={handleCreate} filters={filters} title={'User'}>
+                <GenericPage onCreate={handleCreate} filters={filters} title={'User'}>
                     <TableComponent titles={titles} actions={actions} datas={users} />
                 </GenericPage>
             )}

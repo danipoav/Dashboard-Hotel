@@ -1,22 +1,31 @@
-import { useEffect, useState } from "react"
-import { Container, Content, Title, CreateForm, Label, Input, SubmitButton } from "./UsersCreate.styles"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState, ChangeEvent, FormEvent } from "react";
+import { Container, Content, Title, CreateForm, Label, Input, SubmitButton } from "./UsersCreate.styles";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { unFetchUser, updatedUser, createUser } from "../../../store/thunk/userThunk";
+import React from "react";
+import { UserTypeID, UserType } from "../../../types/UserType";
+import { AppDispatch } from "../../../store/store";
+
+interface RootState {
+    users: {
+        user: UserTypeID | null;
+    }
+}
 
 export default function UsersCreate() {
-
-    const user = useSelector((state) => state.users.user)
+    const user = useSelector((state: RootState) => state.users.user);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const [data, setData] = useState({
+    const dispatch = useDispatch<AppDispatch>();
+
+    const [data, setData] = useState<UserType>({
         name: "",
-        image: "",
+        photo: "",
         order_date: "",
         check_in: "",
         check_out: "",
         room_type: "",
-    })
+    });
 
     useEffect(() => {
         if (user) {
@@ -24,7 +33,7 @@ export default function UsersCreate() {
         } else {
             setData({
                 name: "",
-                image: "",
+                photo: "",
                 order_date: "",
                 check_in: "",
                 check_out: "",
@@ -33,27 +42,28 @@ export default function UsersCreate() {
         }
     }, [user]);
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setData({ ...data, [name]: value })
-    }
+        setData({ ...data, [name]: value });
+    };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         if (user) {
-            dispatch(updatedUser(data));
+            const newUser: UserTypeID = { ...data, id: user.id }
+            dispatch(updatedUser(newUser));
         } else {
             dispatch(createUser(data));
         }
         navigate('/home/users');
-    }
+    };
 
     const handleCancel = () => {
         if (user != null) {
-            dispatch(unFetchUser())
+            dispatch(unFetchUser());
         }
-        navigate('/home/users')
-    }
+        navigate('/home/users');
+    };
 
     return (
         <>
@@ -74,11 +84,11 @@ export default function UsersCreate() {
                             />
                         </Label>
                         <Label>
-                            Image (URL):
+                            photo (URL):
                             <Input
                                 type="text"
-                                name="image"
-                                value={data.image}
+                                name="photo"
+                                value={data.photo}
                                 onChange={handleChange}
                                 required
                             />
@@ -129,5 +139,5 @@ export default function UsersCreate() {
                 </Content>
             </Container>
         </>
-    )
+    );
 }

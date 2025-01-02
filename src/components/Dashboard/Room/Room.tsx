@@ -8,17 +8,9 @@ import GenericPage from '../Generic/GenericPage';
 import TableComponent from '../Generic/TableComponent';
 import { AppDispatch, RootState } from '../../../store/store';
 import React from "react";
-import { RoomTypeID as Room } from "../../../types/RoomType";
+import { RoomTypeID} from "../../../types/RoomType";
 
-interface Filter {
-  name: string;
-  active: boolean;
-}
 
-interface Title {
-  key: keyof Room;
-  name: string;
-}
 
 export default function Room() {
   const dispatch = useDispatch<AppDispatch>();
@@ -35,22 +27,22 @@ export default function Room() {
     navigate('create');
   };
 
-  const handleEdit = (room: Room) => {
+  const handleEdit = (room: RoomTypeID) => {
     dispatch(fetchRoom(room));
     navigate('edit');
   };
 
-  const handleShow = (room: Room) => {
+  const handleShow = (room: RoomTypeID) => {
     navigate(`show/${room.id}`, { state: { room } });
   };
 
-  const filters: Filter[] = [
+  const filters = [
     { name: 'All Rooms', active: true },
     { name: 'Active Rooms', active: false },
     { name: 'Inactive Rooms', active: false },
   ];
 
-  const titles: Title[] = [
+  const titles= [
     { key: 'bed_type', name: 'Bed Type' },
     { key: 'room_number', name: 'Room Number' },
     { key: 'facilities', name: 'Facilities' },
@@ -59,9 +51,9 @@ export default function Room() {
   ];
 
   const actions = {
-    handleEdit: (data: Room) => handleEdit(data),
+    handleEdit: (data: RoomTypeID) => handleEdit(data),
     handleDelete: (id: string) => dispatch(deleteRoom(id)),
-    handleShow: (data: Room) => handleShow(data),
+    handleShow: (data: RoomTypeID) => handleShow(data),
   };
 
   return (
