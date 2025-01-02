@@ -3,8 +3,7 @@ import authReducer from './slices/authSlice';
 import roomSlice from './slices/roomSlice';
 import userSlice from './slices/userSlice';
 import contactSlice from './slices/contactSlice';
-import bookingSlice from './slices/bookingSlice';
-
+import bookingSlice from './slices/bookingSlice'
 const store = configureStore({
   reducer: {
     auth: authReducer,

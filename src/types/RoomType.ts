@@ -4,7 +4,7 @@ export interface RoomType {
   bed_type: string;
   room_number: string;
   facilities: string;
-  price: string;
+  price: number;
   status: string;
 }
 

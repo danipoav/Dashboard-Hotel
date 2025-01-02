@@ -25,7 +25,7 @@ export default function RoomCreate() {
     bed_type: "",
     facilities: "",
     status: "",
-    price: ""
+    price: 0
   });
 
   useEffect(() => {
