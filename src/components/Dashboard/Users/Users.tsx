@@ -29,7 +29,7 @@ export default function Users() {
     };
 
     const handleShow = (user: UserTypeID) => {
-        console.log('aaaa');
+        dispatch(fetchUser(user))
         navigate(`show/${user.id}`, { state: { user } });
     };
 

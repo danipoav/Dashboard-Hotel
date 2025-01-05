@@ -1,11 +1,19 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { Container, Content, RoomImage, Title, RoomDetailsList, PriceTag } from './RoomDetails.styles';
+import { RoomTypeID } from '../../../types/RoomType';
+
+interface RootState {
+    rooms: {
+        room: RoomTypeID
+    }
+}
 
 export default function RoomDetails() {
 
-    const room = useSelector((state) => state.rooms.room)
-    
+    const room = useSelector((state: RootState) => state.rooms.room)
+    console.log(room)
+
     return (
         <>
             <Container>
@@ -20,10 +28,10 @@ export default function RoomDetails() {
                             <strong>Bed Type:</strong> {room.bed_type}
                         </li>
                         <li>
-                            <strong>Facilities:</strong> {room.Facilities}
+                            <strong>Facilities:</strong> {room.facilities}
                         </li>
                         <li>
-                            <strong>Status:</strong> {room.Status}
+                            <strong>Status:</strong> {room.status}
                         </li>
                     </RoomDetailsList>
                     <PriceTag>${room.price} / night</PriceTag>

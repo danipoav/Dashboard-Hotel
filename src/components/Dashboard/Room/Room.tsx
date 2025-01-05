@@ -8,7 +8,7 @@ import GenericPage from '../Generic/GenericPage';
 import TableComponent from '../Generic/TableComponent';
 import { AppDispatch, RootState } from '../../../store/store';
 import React from "react";
-import { RoomTypeID} from "../../../types/RoomType";
+import { RoomTypeID } from "../../../types/RoomType";
 
 
 
@@ -33,6 +33,7 @@ export default function Room() {
   };
 
   const handleShow = (room: RoomTypeID) => {
+    dispatch(fetchRoom(room))
     navigate(`show/${room.id}`, { state: { room } });
   };
 
@@ -42,7 +43,7 @@ export default function Room() {
     { name: 'Inactive Rooms', active: false },
   ];
 
-  const titles= [
+  const titles = [
     { key: 'bed_type', name: 'Bed Type' },
     { key: 'room_number', name: 'Room Number' },
     { key: 'facilities', name: 'Facilities' },
