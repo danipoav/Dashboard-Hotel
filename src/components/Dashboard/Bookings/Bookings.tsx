@@ -31,7 +31,7 @@ export default function Bookings() {
     }, [dispatch])
 
     const handleCreate = () => {
-        unFetchBooking()
+        dispatch(unFetchBooking())
         navigate('create');
     };
 
@@ -62,9 +62,9 @@ export default function Bookings() {
     ]
 
     const actions = {
-        handleEdit: (data:Booking) => handleEdit(data),
-        handleDelete: (id:string) => deleteBooking(id),
-        handleShow: (data:Booking) => handleShow(data),
+        handleEdit: (data: Booking) => handleEdit(data),
+        handleDelete: (id: string) => deleteBooking(id),
+        handleShow: (data: Booking) => handleShow(data),
     }
 
     return (

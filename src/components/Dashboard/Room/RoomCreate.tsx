@@ -14,6 +14,16 @@ interface RootState {
 }
 
 export default function RoomCreate() {
+
+  const initialData = {
+    name: "",
+    photo: "",
+    room_number: "",
+    bed_type: "",
+    facilities: "",
+    status: "",
+    price: 0
+  }
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const room = useSelector((state: RootState) => state.rooms.room);

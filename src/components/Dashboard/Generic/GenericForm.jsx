@@ -1,7 +1,0 @@
-import React from 'react'
-
-export default function GenericForm() {
-  return (
-    <div>GenericFormTypescript</div>
-  )
-}

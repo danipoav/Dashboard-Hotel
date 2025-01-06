@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { Container, Content, RoomImage, Title, RoomDetailsList, PriceTag } from './RoomDetails.styles';
+import { Container, Content, LeftSection, RightSection, RoomImage, Title, RoomDetailsList, PriceTag } from './RoomDetails.styles';
 import { RoomTypeID } from '../../../types/RoomType';
 
 interface RootState {
@@ -15,11 +15,13 @@ export default function RoomDetails() {
     console.log(room)
 
     return (
-        <>
-            <Container>
-                <Content>
-                    <Title>{room.name}</Title>
+        <Container>
+            <Content>
+                <LeftSection>
                     <RoomImage src={room.photo} alt={room.name} />
+                </LeftSection>
+                <RightSection>
+                    <Title>{room.name}</Title>
                     <RoomDetailsList>
                         <li>
                             <strong>Room Number:</strong> {room.room_number}
@@ -35,8 +37,8 @@ export default function RoomDetails() {
                         </li>
                     </RoomDetailsList>
                     <PriceTag>${room.price} / night</PriceTag>
-                </Content>
-            </Container>
-        </>
-    )
+                </RightSection>
+            </Content>
+        </Container>
+    );
 }

@@ -21,7 +21,7 @@ export default function Contact() {
     }, [dispatch])
 
     const handleCreate = () => {
-        unFetchContact()
+        dispatch(unFetchContact())
         navigate('create');
     };
 
