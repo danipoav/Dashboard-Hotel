@@ -10,7 +10,7 @@ export const room = [
         "bed_type": "Double Superior",
         "facilities": "AC  Shower  Double Bed  Towel  Bathup  Coffee Set  LED TV  Wifi",
         "status": "Booked",
-        "name": "Deluxe A - 12345"
+        "name": "Deluxe A - 123454"
     },
     {
         "id": v4(),
