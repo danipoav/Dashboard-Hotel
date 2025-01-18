@@ -10,18 +10,18 @@ import RoomDetails from './components/Dashboard/Room/RoomDetails';
 import RoomCreate from './components/Dashboard/Room/RoomCreate';
 import UsersDetails from './components/Dashboard/Users/UsersDetails';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from './store/slices/authSlice';
 import Contact from './components/Dashboard/Contact/Contact';
 import ContactCreate from './components/Dashboard/Contact/ContactCreate';
 import BookingForm from './components/Dashboard/Bookings/BookingForm';
+import { getToken } from './store/thunk/authThunk';
 
 function App() {
 
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.auth.isAuthenticated)
 
-  const handleLogin = (email, password) => {
-    dispatch(login({ email, password }))
+  const handleLogin = (username, password) => {
+    dispatch(getToken({ username, password }))
   }
 
   return (

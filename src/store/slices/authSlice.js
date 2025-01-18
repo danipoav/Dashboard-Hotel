@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getToken } from "../thunk/authThunk";
 
 const authSlice = createSlice({
     name: 'auth',
@@ -9,7 +10,8 @@ const authSlice = createSlice({
         userProfile: JSON.parse(localStorage.getItem('userProfile')) || {
             name: 'Daniel',
             email: 'dapoav2002gmail.com'
-        }
+        },
+        token: localStorage.getItem('token') || null
     },
     reducers: {
         login(state, action) {
@@ -28,6 +30,17 @@ const authSlice = createSlice({
             state.userProfile.email = email;
             localStorage.setItem('userProfile', JSON.stringify(state.userProfile));
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getToken.fulfilled, (state, action) => {
+                state.isAuthenticated = true;
+                state.token = action.payload;
+            })
+            .addCase(getToken.rejected, (state, action) => {
+                state.isAuthenticated = false;
+                state.token = null;
+            })
     }
 })
 

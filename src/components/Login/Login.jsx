@@ -25,8 +25,8 @@ export const Form = ({ handleLogin }) => {
                         <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </DivGroup>
                     <Button type="submit">Login</Button>
-                    <Text><strong>Email:</strong> user@user.com</Text>
-                    <Text><strong>Password:</strong> user</Text>
+                    <Text><strong>Email:</strong> Danipoav</Text>
+                    <Text><strong>Password:</strong> admin</Text>
                 </Login>
             </Container>
         </>
