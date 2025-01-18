@@ -1,33 +1,30 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-const url = 'http://localhost:3000/api/auth'
+import fetchAPI from "../../components/Fetch/fetchAPI";
 
 export const getToken = createAsyncThunk<string, { username: string; password: string }>(
-    'api/auth', async ({ username, password }) => {
+    'api/getToken', async ({ username, password }) => {
         try {
-            const response = await fetch('http://localhost:3000/api/auth', {
+            const token = await fetchAPI('auth', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify({
                     "username": username,
                     "password": password
-                }),
-            });
-
-            if (response.ok) {
-                const token = await response.json();
+                })
+            })
+            console.log(token)
+            if (token) {
                 localStorage.setItem('isAuth', JSON.stringify(true));
                 localStorage.setItem('token', token);
                 return token;
             } else {
                 localStorage.setItem('isAuth', JSON.stringify(false));
-                localStorage.setItem('token', JSON.stringify(null));
+                localStorage.removeItem('token');
                 throw new Error('Credenciales incorrectas o error en la API');
             }
 
         } catch (error) {
+            localStorage.setItem('isAuth', JSON.stringify(false));
+            localStorage.removeItem('token');
             throw new Error(error.message || 'Error al autenticar');
         }
     }

@@ -1,17 +1,25 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { BookingType, BookingTypeID } from "../../types/BookingType"
+import fetchAPI from "../../components/Fetch/fetchAPI";
 
 export const fetchBookings = createAsyncThunk<BookingTypeID[], void>(
     'bookings/fetchBookings',
     async () => {
-        const local = JSON.parse(localStorage.getItem('bookings') || '[]');
-        if (local.length) {
-            return local;
-        } else {
-            const defaultBookings: BookingTypeID[] = [];
-            localStorage.setItem('bookings', JSON.stringify(defaultBookings));
-            return defaultBookings;
+        try {
+            const bookings = fetchAPI('bookings', {
+                method: 'GET'
+            })
+            if (bookings) {
+                console.log(bookings);
+                return bookings;
+            } else {
+                throw new Error('Error getting all bookings')
+            }
+
+        } catch (error) {
+            console.log(error.message || 'Error getting Bookings')
+            throw error;
         }
     }
 );

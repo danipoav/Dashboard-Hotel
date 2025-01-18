@@ -2,19 +2,26 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 import { contact as initialContacts } from '../../data/contact';
 import { ContactType, ContactTypeID } from "../../types/ContactType";
+import fetchAPI from "../../components/Fetch/fetchAPI";
 
 export const fetchContacts = createAsyncThunk<ContactTypeID[]>(
   'contacts/fetchContacts',
   async () => {
-    const local = localStorage.getItem('contacts');
-    const contacts = local ? JSON.parse(local) as ContactTypeID[] : null;
+    try {
+      const contacts = fetchAPI('contacts', {
+          method: 'GET'
+      })
+      if (contacts) {
+          console.log(contacts);
+          return contacts;
+      } else {
+          throw new Error('Error getting all contacts')
+      }
 
-    if (contacts) {
-      return contacts;
-    } else {
-      localStorage.setItem('contacts', JSON.stringify(initialContacts));
-      return initialContacts;
-    }
+  } catch (error) {
+      console.log(error.message || 'Error getting all contacts')
+      throw error;
+  }
   });
 
 export const fetchContact = createAsyncThunk<ContactTypeID, ContactTypeID>(
