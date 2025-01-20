@@ -11,7 +11,7 @@ const authSlice = createSlice({
             name: 'Daniel',
             email: 'dapoav2002gmail.com'
         },
-        token: localStorage.getItem('token') || null
+        token: '' || null
     },
     reducers: {
         login(state, action) {

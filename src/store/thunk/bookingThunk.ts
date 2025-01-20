@@ -24,10 +24,23 @@ export const fetchBookings = createAsyncThunk<BookingTypeID[], void>(
     }
 );
 
-export const fetchBooking = createAsyncThunk<BookingTypeID, BookingTypeID>(
+export const fetchBooking = createAsyncThunk<BookingTypeID[], string>(
     'bookings/fetchBooking',
-    async (booking) => {
-        return booking;
+    async (id) => {
+        try {
+            const booking = await fetchAPI(`bookings/${id}`, {
+                method: 'GET'
+            })
+            if (booking) {
+                console.log(booking)
+                return booking
+            } else {
+                throw new Error('Error getting one booking')
+            }
+        } catch (error) {
+            console.log(error.message || 'Error getting one booking')
+            throw error;
+        }
     }
 );
 
@@ -41,10 +54,7 @@ export const unFetchBooking = createAsyncThunk<null, void>(
 export const deleteBooking = createAsyncThunk<BookingTypeID[], string>(
     'booking/deleteBooking',
     async (id) => {
-        const bookings: BookingTypeID[] = JSON.parse(localStorage.getItem('bookings') || '[]');
-        const updatedBookings = bookings.filter((booking) => booking.id !== id);
-        localStorage.setItem('bookings', JSON.stringify(updatedBookings));
-        return updatedBookings;
+        return [];
     }
 );
 

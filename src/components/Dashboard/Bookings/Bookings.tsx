@@ -35,8 +35,8 @@ export default function Bookings() {
         navigate('create');
     };
 
-    const handleEdit = (booking: Booking) => {
-        dispatch(fetchBooking(booking))
+    const handleEdit = (id: string) => {
+        dispatch(fetchBooking(id))
         navigate('edit')
     }
 
@@ -62,7 +62,7 @@ export default function Bookings() {
     ]
 
     const actions = {
-        handleEdit: (data: Booking) => handleEdit(data),
+        handleEdit: (id: string) => handleEdit(id),
         handleDelete: (id: string) => deleteBooking(id),
         handleShow: (data: Booking) => handleShow(data),
     }
