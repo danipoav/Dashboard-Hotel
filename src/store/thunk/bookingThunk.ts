@@ -2,12 +2,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { BookingType, BookingTypeID } from "../../types/BookingType"
 import fetchAPI from "../../components/Fetch/fetchAPI";
+import { CgTab } from "react-icons/cg";
 
 export const fetchBookings = createAsyncThunk<BookingTypeID[], void>(
     'bookings/fetchBookings',
     async () => {
         try {
-            const bookings = fetchAPI('bookings', {
+            const bookings = await fetchAPI('bookings', {
                 method: 'GET'
             })
             if (bookings) {
@@ -54,7 +55,20 @@ export const unFetchBooking = createAsyncThunk<null, void>(
 export const deleteBooking = createAsyncThunk<BookingTypeID[], string>(
     'booking/deleteBooking',
     async (id) => {
-        return [];
+        try {
+            const bookings = await fetchAPI(`bookings/${id}`, {
+                method: 'DELETE'
+            })
+            if (bookings) {
+                console.log(bookings)
+                return bookings;
+            } else {
+                throw new Error('Error getting bookings from deleteBooking')
+            }
+        } catch (error) {
+            console.log(error.message || 'Error removing one booking')
+            throw error;
+        }
     }
 );
 
