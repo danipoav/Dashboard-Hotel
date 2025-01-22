@@ -11,7 +11,6 @@ export const getToken = createAsyncThunk<string, { username: string; password: s
                     "password": password
                 })
             })
-            console.log(token)
             if (token) {
                 localStorage.setItem('isAuth', JSON.stringify(true));
                 localStorage.setItem('token', token);

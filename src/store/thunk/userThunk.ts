@@ -2,19 +2,36 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 import { guest } from '../../data/guest';
 import { UserType, UserTypeID } from "../../types/UserType";
+import fetchAPI from "../../components/Fetch/fetchAPI";
 
 export const fetchUsers = createAsyncThunk<UserTypeID[]>('users/fetchUsers', async () => {
-  const local = JSON.parse(localStorage.getItem('users') || '[]') as UserTypeID[];
-  if (local.length) {
-    return local;
-  } else {
-    localStorage.setItem('users', JSON.stringify(guest));
-    return guest;
+  try {
+    const users = await fetchAPI('users', {
+      method: 'GET'
+    })
+    if (users) {
+      return users;
+    } else {
+      throw new Error('Error getting all users')
+    }
+  } catch (error) {
+    throw error;
   }
 });
 
-export const fetchUser = createAsyncThunk<UserTypeID, UserTypeID>('users/fetchUser', async (user: UserTypeID) => {
-  return user;
+export const fetchUser = createAsyncThunk<UserTypeID, string>('users/fetchUser', async (id) => {
+  try {
+    const user = await fetchAPI(`users/${id}`, {
+      method: 'GET'
+    })
+    if (user) {
+      return user
+    } else {
+      throw new Error('Error getting one user')
+    }
+  } catch (error) {
+    throw error;
+  }
 });
 
 export const unFetchUser = createAsyncThunk<null>('users/unFetchUser', async () => {
@@ -22,25 +39,49 @@ export const unFetchUser = createAsyncThunk<null>('users/unFetchUser', async () 
 });
 
 export const createUser = createAsyncThunk<UserTypeID[], Omit<UserType, 'id'>>('users/createUser', async (user: Omit<UserType, 'id'>) => {
-  const users = JSON.parse(localStorage.getItem('users') || '[]') as UserTypeID[];
-  const newUser: UserTypeID = { ...user, id: uuid() };
-  const updatedUsers = [...users, newUser];
-  localStorage.setItem('users', JSON.stringify(updatedUsers));
-  return updatedUsers;
+  try {
+    const users = await fetchAPI('users', {
+      method: 'POST',
+      body: JSON.stringify(user)
+    })
+    if (users) {
+      return users
+    } else {
+      throw new Error('Error getting users from createUsers')
+    }
+  } catch (error) {
+    throw error;
+  }
 });
 
 export const updatedUser = createAsyncThunk<UserTypeID[], UserTypeID>('users/updateUser', async (user: UserTypeID) => {
-  const users: UserTypeID[] = JSON.parse(localStorage.getItem('users') || '[]');
-  const updatedUsers = users.map((userMap) =>
-    userMap.id === user.id ? { ...userMap, ...user } : userMap
-  );
-  localStorage.setItem('users', JSON.stringify(updatedUsers));
-  return updatedUsers;
+  try {
+    const users = await fetchAPI(`users/${user.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(user)
+    })
+    if (users) {
+      return users
+    } else {
+      throw new Error('Error getting users from updatedUser')
+    }
+  } catch (error) {
+    throw error
+  }
 });
 
 export const deleteUser = createAsyncThunk<UserTypeID[], string>('users/delete', async (id: string) => {
-  const users: UserTypeID[] = JSON.parse(localStorage.getItem('users') || '[]');
-  const updatedUsers = users.filter((user) => user.id !== id);
-  localStorage.setItem('users', JSON.stringify(updatedUsers));
-  return updatedUsers;
+  try {
+    const users = await fetchAPI(`users/${id}`, {
+      method: 'DELETE'
+    })
+    if (users) {
+      console.log(users)
+      return users;
+    } else {
+      throw new Error('Error getting users from deleteUser')
+    }
+  } catch (error) {
+    throw error;
+  }
 });
