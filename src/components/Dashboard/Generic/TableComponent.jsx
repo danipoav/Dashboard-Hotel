@@ -50,7 +50,7 @@ export default function TableComponent({ titles, datas, actions }) {
                                 </Td>
                             ))}
                             <Td>
-                                <FaRegEdit size={30} cursor={'pointer'} onClick={() => actions.handleEdit(data)} />
+                                <FaRegEdit size={30} cursor={'pointer'} onClick={() => actions.handleEdit(data.id)} />
                                 <MdDeleteOutline size={30} style={{ cursor: 'pointer' }} onClick={() => dispatch(actions.handleDelete(data.id))}
                                 />
                             </Td>
