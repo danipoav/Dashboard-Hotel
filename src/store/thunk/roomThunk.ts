@@ -1,27 +1,41 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { v4 as uuid } from "uuid";
-import { room as initialRooms } from '../../data/room';
 import { RoomType, RoomTypeID } from "../../types/RoomType";
+import fetchAPI from "../../components/Fetch/fetchAPI";
 
 export const fetchRooms = createAsyncThunk<RoomTypeID[]>(
   'rooms/fetchRooms',
   async () => {
-    const local = localStorage.getItem('rooms');
-    const rooms = local ? JSON.parse(local) as RoomTypeID[] : null;
+    try {
+      const rooms = await fetchAPI('rooms', {
+        method: 'GET'
+      })
+      if (rooms) {
+        return rooms;
+      } else {
+        throw new Error('Error getting all rooms')
+      }
 
-    if (rooms) {
-      return rooms;
-    } else {
-      localStorage.setItem('rooms', JSON.stringify(initialRooms));
-      return initialRooms as RoomTypeID[];
+    } catch (error) {
+      throw error;
     }
   }
 );
 
-export const fetchRoom = createAsyncThunk<RoomTypeID, RoomTypeID>(
+export const fetchRoom = createAsyncThunk<RoomTypeID, string>(
   'rooms/fetchRoom',
-  async (room) => {
-    return room;
+  async (id) => {
+    try {
+      const room = await fetchAPI(`rooms/${id}`, {
+        method: 'GET'
+      })
+      if (room) {
+        return room
+      } else {
+        throw new Error('Error getting one room')
+      }
+    } catch (error) {
+      throw error;
+    }
   }
 );
 
@@ -30,37 +44,58 @@ export const unFetchRoom = createAsyncThunk<null>(
   async () => null
 );
 
-export const createRoom = createAsyncThunk<RoomTypeID[], Omit<RoomType, 'id'>>(
+export const createRoom = createAsyncThunk<RoomTypeID[], RoomType>(
   'rooms/createRoom',
   async (room) => {
-    const rooms = JSON.parse(localStorage.getItem('rooms') || '[]') as RoomTypeID[];
-    const newRoom: RoomTypeID = { ...room, id: uuid() };
-    const updatedRooms = [...rooms, newRoom];
-    localStorage.setItem('rooms', JSON.stringify(updatedRooms));
-    return updatedRooms;
+    try {
+      const rooms = await fetchAPI('rooms', {
+        method: 'POST',
+        body: JSON.stringify(room)
+      })
+      if (rooms) {
+        return rooms
+      } else {
+        throw new Error('Error getting rooms from Create Rooms')
+      }
+    } catch (error) {
+      throw error;
+    }
   }
 );
 
 export const updatedRoom = createAsyncThunk<RoomTypeID[], RoomTypeID>(
   'rooms/updateRoom',
   async (room) => {
-    const rooms: RoomTypeID[] = JSON.parse(localStorage.getItem('rooms') || '[]');
-    const updatedRooms = rooms.map((existingRoom) =>
-      existingRoom.id === room.id
-        ? { ...existingRoom, ...room }
-        : existingRoom
-    );
-    localStorage.setItem('rooms', JSON.stringify(updatedRooms));
-    return updatedRooms;
+    try {
+      const rooms = await fetchAPI(`rooms/${room.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(room)
+      })
+      if (rooms) {
+        return rooms
+      } else {
+        throw new Error('Error getting rooms from Update Rooms')
+      }
+    } catch (error) {
+      throw error
+    }
   }
 );
 
 export const deleteRoom = createAsyncThunk<RoomTypeID[], string>(
   'rooms/delete',
   async (id) => {
-    const rooms = JSON.parse(localStorage.getItem('rooms') || '[]') as RoomTypeID[];
-    const updatedRooms = rooms.filter((room) => room.id !== id);
-    localStorage.setItem('rooms', JSON.stringify(updatedRooms));
-    return updatedRooms;
+    try {
+      const rooms = await fetchAPI(`rooms/${id}`, {
+        method: 'DELETE'
+      })
+      if (rooms) {
+        return rooms;
+      } else {
+        throw new Error('Error getting rooms from Delete Room')
+      }
+    } catch (error) {
+      throw error;
+    }
   }
 );

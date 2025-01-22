@@ -26,7 +26,7 @@ export default function TableComponent({ titles, datas, actions }) {
                     {datas.map((data) => (
                         <Tr key={data.id}>
                             <Td>
-                                <div onClick={() => actions.handleShow(data)} style={{ display: 'flex', gap: '10px', alignItems: 'center', cursor: 'pointer' }}>
+                                <div onClick={() => actions.handleShow(data.id)} style={{ display: 'flex', gap: '10px', alignItems: 'center', cursor: 'pointer' }}>
                                     <img src={data.photo} alt={`Guest ${data.name}`} style={{ height: '70px', width: 'auto', borderRadius: '10px' }} />
                                     <div style={{ textAlign: 'left' }}>
                                         <Name>{data.name}</Name>

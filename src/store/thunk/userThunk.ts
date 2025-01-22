@@ -1,6 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { v4 as uuid } from "uuid";
-import { guest } from '../../data/guest';
 import { UserType, UserTypeID } from "../../types/UserType";
 import fetchAPI from "../../components/Fetch/fetchAPI";
 

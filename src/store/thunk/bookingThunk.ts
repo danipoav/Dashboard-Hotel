@@ -29,7 +29,6 @@ export const fetchBooking = createAsyncThunk<BookingTypeID[], string>(
                 method: 'GET'
             })
             if (booking) {
-                console.log(booking)
                 return booking
             } else {
                 throw new Error('Error getting one booking')
@@ -47,24 +46,6 @@ export const unFetchBooking = createAsyncThunk<null, void>(
     }
 );
 
-export const deleteBooking = createAsyncThunk<BookingTypeID[], string>(
-    'booking/deleteBooking',
-    async (id) => {
-        try {
-            const bookings = await fetchAPI(`bookings/${id}`, {
-                method: 'DELETE'
-            })
-            if (bookings) {
-                console.log(bookings)
-                return bookings;
-            } else {
-                throw new Error('Error getting bookings from deleteBooking')
-            }
-        } catch (error) {
-            throw error;
-        }
-    }
-);
 
 export const createBooking = createAsyncThunk<BookingTypeID[], BookingType>(
     'bookings/createBooking',
@@ -100,6 +81,24 @@ export const editBooking = createAsyncThunk<BookingTypeID[], BookingTypeID>(
             }
         } catch (error) {
             throw error
+        }
+    }
+);
+
+export const deleteBooking = createAsyncThunk<BookingTypeID[], string>(
+    'booking/deleteBooking',
+    async (id) => {
+        try {
+            const bookings = await fetchAPI(`bookings/${id}`, {
+                method: 'DELETE'
+            })
+            if (bookings) {
+                return bookings;
+            } else {
+                throw new Error('Error getting bookings from deleteBooking')
+            }
+        } catch (error) {
+            throw error;
         }
     }
 );

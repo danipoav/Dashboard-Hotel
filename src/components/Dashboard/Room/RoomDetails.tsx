@@ -12,7 +12,6 @@ interface RootState {
 export default function RoomDetails() {
 
     const room = useSelector((state: RootState) => state.rooms.room)
-    console.log(room)
 
     return (
         <Container>

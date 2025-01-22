@@ -63,10 +63,8 @@ export default function RoomCreate() {
   const handleCancel = () => {
     if (room != null) {
       dispatch(unFetchRoom());
-      navigate('/home/room');
-    } else {
-      navigate('/home/room');
     }
+    navigate('/home/room');
   };
 
   return (

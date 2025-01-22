@@ -27,14 +27,14 @@ export default function Room() {
     navigate('create');
   };
 
-  const handleEdit = (room: RoomTypeID) => {
-    dispatch(fetchRoom(room));
+  const handleEdit = (id: string) => {
+    dispatch(fetchRoom(id));
     navigate('edit');
   };
 
-  const handleShow = (room: RoomTypeID) => {
-    dispatch(fetchRoom(room))
-    navigate(`show/${room.id}`, { state: { room } });
+  const handleShow = (id: string) => {
+    dispatch(fetchRoom(id))
+    navigate(`show/${id}`);
   };
 
   const filters = [
@@ -52,9 +52,9 @@ export default function Room() {
   ];
 
   const actions = {
-    handleEdit: (data: RoomTypeID) => handleEdit(data),
+    handleEdit: (id: string) => handleEdit(id),
     handleDelete: (id: string) => dispatch(deleteRoom(id)),
-    handleShow: (data: RoomTypeID) => handleShow(data),
+    handleShow: (id: string) => handleShow(id),
   };
 
   return (
